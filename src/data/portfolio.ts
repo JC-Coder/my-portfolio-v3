@@ -3,12 +3,16 @@ export const portfolioData = {
     name: 'JC CODER',
     intro: "Hi, I'm Joseph",
     about:
-      "**Software Engineer** helping businesses grow, make money and scale. Also working on tools to improve lives of people using the internet. I'm not a **10x Dev** but I can help you make **10x your current revenue**.",
+      "**Software Engineer** helping businesses grow, make money and scale. Also working on tools to improve lives of people using the internet. I'm not a **10x Dev** but I can help you **10x your current revenue**.",
   },
   socials: [
     { name: 'GitHub', link: 'https://github.com/jc-coder', icon: 'github' },
     { name: 'Twitter/X', link: 'https://x.com/jc_coder1', icon: 'twitter' },
-    { name: 'LinkedIn', link: 'https://www.linkedin.com/in/jc-coder', icon: 'linkedin' },
+    {
+      name: 'LinkedIn',
+      link: 'https://www.linkedin.com/in/jc-coder',
+      icon: 'linkedin',
+    },
     // { name: 'Book a call', link: '#', icon: 'calendar' },
     // { name: 'Stack', link: '#', icon: 'box' },
   ],

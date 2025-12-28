@@ -82,7 +82,10 @@ function ExperienceItem({ company, duration, type, logoType, roles }: any) {
 
         <div className="space-y-8 relative">
           {roles.map((role: any, index: number) => (
-            <div key={index} className="relative pl-6">
+            <div
+              key={index}
+              className={`relative ${roles.length > 1 ? 'pl-6' : ''}`}
+            >
               {/* Connector dots and lines for multiple roles */}
               {roles.length > 1 && (
                 <>
