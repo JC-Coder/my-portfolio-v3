@@ -1,4 +1,8 @@
+import { portfolioData } from '../../data/portfolio'
+
 export function Experience() {
+  const { experience, education } = portfolioData
+
   return (
     <div className="space-y-12">
       <div className="space-y-2">
@@ -7,165 +11,67 @@ export function Experience() {
       </div>
 
       <div className="space-y-12">
-        <ExperienceItem
-          company="Koch – Bautechnik Energieberatung"
-          duration="4 yrs 4 mos"
-          type="Part-time"
-          logo={
-            <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center overflow-hidden">
-              <svg
-                viewBox="0 0 24 24"
-                className="w-8 h-8 text-white fill-current"
-              >
-                <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" />
-              </svg>
-            </div>
-          }
-          roles={[
-            {
-              title: 'Office Assistant',
-              type: 'Part-time',
-              period: 'Aug 2021 – Present',
-              relativeDuration: '4 yrs 4 mos',
-              location: 'Riedlingen, Baden-Württemberg, Germany',
-              tech: 'Adobe Photoshop, Adobe XD',
-            },
-          ]}
-        />
-
-        <ExperienceItem
-          company="RSU GmbH – E-Commerce"
-          duration="11 mos"
-          type="Co-op"
-          logo={
-            <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex flex-col items-center justify-center p-1">
-              <span className="text-[10px] font-bold text-orange-500 leading-none tracking-tighter italic">
-                RSU
-              </span>
-              <span className="text-[6px] text-zinc-400 leading-none uppercase tracking-widest font-medium">
-                E-COMMERCE
-              </span>
-            </div>
-          }
-          roles={[
-            {
-              title: 'Software Engineer',
-              type: 'Co-op',
-              period: 'Oct 2024 – Aug 2025',
-              relativeDuration: '10 mos',
-              location: 'Ulm, Baden-Württemberg, Germany',
-              tech: 'Git, Angular',
-              moreTech: ['Laravel'],
-              showLine: true,
-            },
-            {
-              title: 'Junior Developer',
-              type: 'Part-time',
-              period: 'Aug 2024 – Sep 2024',
-              relativeDuration: '1 mo',
-              location: 'Ulm, Baden-Württemberg, Germany',
-              tech: 'JavaScript, HTML',
-              moreTech: ['CSS'],
-              showLine: true,
-            },
-            {
-              title: 'Software Engineer',
-              type: 'Internship',
-              period: 'Sep 2024 – Oct 2024',
-              location: 'Riedlingen, Baden-Württemberg, Germany',
-              tech: 'Git, Angular',
-              moreTech: ['Laravel'],
-            },
-          ]}
-        />
-
-        <ExperienceItem
-          company="Mail0 (X25)"
-          duration="1 mo"
-          type="Contract"
-          logo={
-            <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center">
-              <svg viewBox="0 0 24 24" className="w-6 h-6 text-white">
-                <path
-                  fill="currentColor"
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
-                />
-              </svg>
-            </div>
-          }
-          roles={[
-            {
-              title: 'Discord Community Manager',
-              type: 'Contract',
-              period: 'Jul 2025 – Aug 2025',
-              location: 'Remote, Germany',
-              tech: 'Discord, Community',
-              moreTech: ['Customer Support'],
-            },
-          ]}
-        />
+        {experience.map((item, index) => (
+          <ExperienceItem key={index} {...item} />
+        ))}
       </div>
 
       <div className="space-y-8 pt-4">
         <h2 className="text-2xl font-bold">Education</h2>
         <div className="space-y-10">
-          <EducationItem
-            school="Baden-Wuerttemberg Cooperative State University Heidenheim"
-            degree="Bachelor of Science - BS, Computer Science"
-            type="Full-time"
-            period="Oct 2024 - Aug 2025 · 10 mos"
-            location="Heidenheim, Baden-Württemberg, Germany"
-            note="Dropped Out"
-            logo={
-              <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center p-1 overflow-hidden">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/e/e5/DHBW_Logo.svg"
-                  alt="DHBW"
-                  className="w-full h-auto"
-                />
-              </div>
-            }
-          />
-          <EducationItem
-            school="Kaufmännische Schule Ehingen"
-            degree="Fachhochschulreife, Foreign Languages"
-            type="Full-time"
-            period="Sep 2022 - Jul 2024 · 1 yr 10 mos"
-            location="Ehingen, Baden-Württemberg, Germany"
-            note="Grade: 2.9"
-            logo={
-              <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center p-2 overflow-hidden">
-                <span className="text-sm font-bold text-blue-800 leading-none">
-                  KSE
-                </span>
-              </div>
-            }
-          />
-          <EducationItem
-            school="Geschwister-Scholl-Realschule Riedlingen"
-            degree="Middle School Diploma"
-            type="Full-time"
-            period="Sep 2016 - Jul 2022 · 5 yrs 10 mos"
-            location="Riedlingen, Baden-Württemberg, Germany"
-            note="Englisch, German"
-            logo={
-              <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center p-1 overflow-hidden">
-                <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-900 font-bold text-xs">
-                  GSR
-                </div>
-              </div>
-            }
-          />
+          {education.map((item, index) => (
+            <EducationItem key={index} {...item} />
+          ))}
         </div>
       </div>
     </div>
   )
 }
 
-function ExperienceItem({ company, duration, type, logo, roles }: any) {
+function ExperienceItem({ company, duration, type, logoType, roles }: any) {
+  const renderLogo = () => {
+    if (logoType === 'svg-koch') {
+      return (
+        <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center overflow-hidden">
+          <svg viewBox="0 0 24 24" className="w-8 h-8 text-white fill-current">
+            <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" />
+          </svg>
+        </div>
+      )
+    }
+
+    if (logoType === 'custom-rsu') {
+      return (
+        <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex flex-col items-center justify-center p-1">
+          <span className="text-[10px] font-bold text-orange-500 leading-none tracking-tighter italic">
+            RSU
+          </span>
+          <span className="text-[6px] text-zinc-400 leading-none uppercase tracking-widest font-medium">
+            E-COMMERCE
+          </span>
+        </div>
+      )
+    }
+
+    if (logoType === 'svg-mail0') {
+      return (
+        <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center">
+          <svg viewBox="0 0 24 24" className="w-6 h-6 text-white">
+            <path
+              fill="currentColor"
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+            />
+          </svg>
+        </div>
+      )
+    }
+
+    return null
+  }
+
   return (
     <div className="flex gap-4">
-      <div className="shrink-0">{logo}</div>
+      <div className="shrink-0">{renderLogo()}</div>
       <div className="space-y-4 flex-1">
         <div>
           <h3 className="text-xl font-bold text-foreground">{company}</h3>
@@ -246,11 +152,46 @@ function EducationItem({
   period,
   location,
   note,
-  logo,
+  logoType,
+  logoUrl,
+  logoText,
+  logoColor,
 }: any) {
+  const renderLogo = () => {
+    if (logoType === 'image') {
+      return (
+        <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center p-1 overflow-hidden">
+          <img src={logoUrl} alt={school} className="w-full h-auto" />
+        </div>
+      )
+    }
+
+    if (logoType === 'text') {
+      return (
+        <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center p-2 overflow-hidden">
+          <span className={`text-sm font-bold leading-none ${logoColor}`}>
+            {logoText}
+          </span>
+        </div>
+      )
+    }
+
+    if (logoType === 'text-pill') {
+      return (
+        <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center p-1 overflow-hidden">
+          <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-900 font-bold text-xs">
+            {logoText}
+          </div>
+        </div>
+      )
+    }
+
+    return null
+  }
+
   return (
     <div className="flex gap-4">
-      <div className="shrink-0">{logo}</div>
+      <div className="shrink-0">{renderLogo()}</div>
       <div className="space-y-1 flex-1">
         <h3 className="text-xl font-bold text-foreground leading-tight">
           {school}

@@ -1,50 +1,9 @@
 import { Play, Monitor, FileText } from 'lucide-react'
-
-interface ISpeakingEngagement {
-  title: string
-  event: string
-  date: string
-  description: string
-  image: string
-  videoUrl?: string
-  slidesUrl?: string
-  readUrl?: string
-}
-
-const SPEAKING_DATA: ISpeakingEngagement[] = [
-  {
-    title: 'The Future of Type-Safe Frontend Architectures',
-    event: 'React Berlin Conference',
-    date: 'June 2025',
-    description:
-      'A deep dive into how we can leverage TanStack Router and Start to build robust, type-safe applications that scale. Exploring the boundaries of SSR and SPA modes.',
-    image: 'https://iili.io/2aBOZJ.jpg',
-    videoUrl: 'https://youtube.com',
-    slidesUrl: 'https://speakerdeck.com',
-    readUrl: 'https://hashnode.com',
-  },
-  {
-    title: 'Building Maintainable Open Source Projects',
-    event: 'Open Source Summit Europe',
-    date: 'March 2025',
-    description:
-      'Lessons learned from maintaining large-scale TypeScript projects. We discuss community management, documentation, and sustainable development practices.',
-    image: 'https://iili.io/2aBOZJ.jpg',
-    videoUrl: 'https://youtube.com',
-    readUrl: 'https://hashnode.com',
-  },
-  {
-    title: 'CSS-in-JS vs Utility-First: The Great Debate',
-    event: 'TechTalk Hamburg',
-    date: 'November 2024',
-    description:
-      'Comparing different styling approaches in modern React applications. Analyzing performance, developer experience, and long-term maintainability.',
-    image: 'https://iili.io/2aBOZJ.jpg',
-    slidesUrl: 'https://speakerdeck.com',
-  },
-]
+import { portfolioData } from '../../data/portfolio'
 
 export function Speaking() {
+  const { speakingEngagements } = portfolioData
+
   return (
     <div className="space-y-12">
       <div className="space-y-2">
@@ -56,7 +15,7 @@ export function Speaking() {
       </div>
 
       <div className="space-y-8">
-        {SPEAKING_DATA.map((item, index) => (
+        {speakingEngagements.map((item, index) => (
           <SpeakingItem key={index} engagement={item} />
         ))}
       </div>
@@ -64,7 +23,7 @@ export function Speaking() {
   )
 }
 
-function SpeakingItem({ engagement }: { engagement: ISpeakingEngagement }) {
+function SpeakingItem({ engagement }: { engagement: any }) {
   return (
     <div className="flex flex-col md:flex-row rounded-2xl border border-border bg-background overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
       {/* Left Column: Image */}

@@ -11,7 +11,7 @@ export function TabNavigation({ activeTab, onTabChange }: TabNavigationProps) {
     { id: 'experience', name: 'Experience' },
     { id: 'tools', name: 'Tools' },
     { id: 'blog', name: 'Blog' },
-    { id: 'speaking', name: 'Speaking' },
+    { id: 'speaking', name: 'Talks' },
   ]
 
   return (

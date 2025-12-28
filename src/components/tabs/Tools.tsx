@@ -1,4 +1,8 @@
+import { portfolioData } from '../../data/portfolio'
+
 export function Tools() {
+  const { tools } = portfolioData
+
   return (
     <div className="space-y-12">
       <div className="space-y-2">
@@ -7,33 +11,25 @@ export function Tools() {
       </div>
 
       <div className="space-y-10">
-        <ToolSection title="Frontend">
-          <ToolItem name="React" icon="⚛️" />
-          <ToolItem name="Next.js" icon="N" />
-          <ToolItem name="TailwindCSS" icon="🌊" />
-        </ToolSection>
-
-        <ToolSection title="Backend & Infrastructure">
-          <ToolItem name="Node.js" icon="🟩" />
-          <ToolItem name="Bun" icon="🥟" />
-          <ToolItem name="PostgreSQL" icon="🐘" />
-          <ToolItem name="Hono" icon="🔥" />
-          <ToolItem name="Neon" icon="🟢" />
-          <ToolItem name="Drizzle" icon="🌧️" />
-        </ToolSection>
-
-        <ToolSection title="Development Tools">
-          <ToolItem name="Docker" icon="🐳" />
-          <ToolItem name="Vitest" icon="⚡" />
-          <ToolItem name="PostHog" icon="🦔" />
-          <ToolItem name="Upstash" icon="🌀" />
-        </ToolSection>
+        {tools.map((section, index) => (
+          <ToolSection key={index} title={section.title}>
+            {section.items.map((tool, idx) => (
+              <ToolItem key={idx} {...tool} />
+            ))}
+          </ToolSection>
+        ))}
       </div>
     </div>
   )
 }
 
-function ToolSection({ title, children }: { title: string; children: React.ReactNode }) {
+function ToolSection({
+  title,
+  children,
+}: {
+  title: string
+  children: React.ReactNode
+}) {
   return (
     <div className="space-y-6">
       <h3 className="text-lg font-bold text-foreground">{title}</h3>

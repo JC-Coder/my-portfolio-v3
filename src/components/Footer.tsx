@@ -1,15 +1,26 @@
-import { Heart } from 'lucide-react'
+import { getGithubLink, portfolioData } from '@/data/portfolio'
 
 export function Footer() {
+  const githubLink = getGithubLink()
+
   return (
-    <footer className="py-8 text-center text-sm text-muted-foreground">
-      <div className="flex items-center justify-center gap-1 mb-2">
-        <span>Made with</span>
-        <Heart className="w-3 h-3 text-red-500 fill-red-500" />
-        <span>by Dominik Koch</span>
+    <footer className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+      <div className="flex items-center gap-1.5">
+        <span>Made with ❤️ by</span>
+        <a href={githubLink} className="font-bold text-foreground">
+          {portfolioData.overview.name}
+        </a>
       </div>
-      <div className="text-xs opacity-60">
-        Inspired by <a href="#" className="underline hover:text-foreground transition-colors">Ahmet Kilinc</a>
+      <div>
+        Inspired by{' '}
+        <a
+          href="https://dominikkoch.dev/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-bold text-foreground underline decoration-1 underline-offset-4 hover:opacity-80 transition-opacity"
+        >
+          Dominik Koch
+        </a>
       </div>
     </footer>
   )

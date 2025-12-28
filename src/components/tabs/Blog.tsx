@@ -1,55 +1,8 @@
-interface IBlogPost {
-  title: string
-  date: string
-  description: string
-  tags: string[]
-  link: string
-}
-
-const BLOG_POSTS: IBlogPost[] = [
-  {
-    title: 'Resolved: Preview Deployment Vulnerability in Dokploy',
-    date: 'Jul 10, 2025',
-    description:
-      'Dokploy allows you to spin up automatic preview deployments for GitHub. These were found to be vulnerable and should not be used by public repositories. Read the full post for more information!',
-    tags: ['Vulnerabilities'],
-    link: 'https://hashnode.com',
-  },
-  {
-    title: 'Why I switched to TanStack Start',
-    date: 'May 15, 2025',
-    description:
-      'Exploring the benefits of TanStack Start for building modern web applications with type-safe routing and SSR. Discover how it simplifies the development workflow.',
-    tags: ['Web Development', 'Frameworks'],
-    link: 'https://hashnode.com',
-  },
-  {
-    title: 'Mastering Tailwind CSS 4.0',
-    date: 'Mar 22, 2025',
-    description:
-      'A deep dive into the new features of Tailwind CSS 4.0, including the engine overhaul and CSS-first configuration. Learn how to leverage the latest updates.',
-    tags: ['Design Systems', 'CSS'],
-    link: 'https://hashnode.com',
-  },
-  {
-    title: 'The future of open source maintenance',
-    date: 'Jan 10, 2025',
-    description:
-      'Reflecting on my experience maintaining Marble and the challenges of sustainable open-source development in the current ecosystem.',
-    tags: ['Open Source', 'Thoughts'],
-    link: 'https://hashnode.com',
-  },
-  {
-    title: 'Building a type-safe API with Hono and Drizzle',
-    date: 'Nov 05, 2024',
-    description:
-      'How to combine Hono and Drizzle ORM to create a robust and highly performant backend with TypeScript. Practical tips and best practices included.',
-    tags: ['Backend', 'TypeScript'],
-    link: 'https://hashnode.com',
-  },
-]
+import { portfolioData } from '../../data/portfolio'
 
 export function Blog() {
+  const { blogPosts } = portfolioData
+
   return (
     <div className="space-y-12">
       <div className="space-y-2">
@@ -60,7 +13,7 @@ export function Blog() {
       </div>
 
       <div className="space-y-6">
-        {BLOG_POSTS.map((post, index) => (
+        {blogPosts.map((post, index) => (
           <BlogItem key={index} post={post} />
         ))}
       </div>
@@ -68,7 +21,7 @@ export function Blog() {
   )
 }
 
-function BlogItem({ post }: { post: IBlogPost }) {
+function BlogItem({ post }: { post: any }) {
   return (
     <a
       href={post.link}
@@ -91,7 +44,7 @@ function BlogItem({ post }: { post: IBlogPost }) {
         </p>
 
         <div className="flex flex-wrap gap-2 pt-1">
-          {post.tags.map((tag) => (
+          {post.tags.map((tag: string) => (
             <span
               key={tag}
               className="text-xs px-3 py-1.5 rounded-md bg-secondary text-muted-foreground border border-border"
