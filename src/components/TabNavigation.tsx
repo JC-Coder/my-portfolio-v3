@@ -42,7 +42,7 @@ function TabButton({
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
+      className={`px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
         isActive
           ? 'bg-background text-foreground shadow-sm ring-1 ring-border'
           : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
