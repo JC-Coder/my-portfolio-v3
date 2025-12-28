@@ -5,7 +5,7 @@ export function Projects() {
   return (
     <div className="space-y-12">
       <div className="space-y-2">
-        <h2 className="text-2xl font-serif font-semibold">Projects</h2>
+        <h2 className="text-2xl font-bold">Projects</h2>
         <p className="text-muted-foreground">Some things I've built.</p>
       </div>
 
@@ -86,7 +86,7 @@ function ProjectCard({
           )}
         </div>
 
-        <p className="text-muted-foreground text-[15px] leading-relaxed max-w-xl">
+        <p className="text-muted-foreground leading-relaxed max-w-xl">
           {description}
         </p>
 

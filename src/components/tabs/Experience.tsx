@@ -59,6 +59,16 @@ export function Experience() {
               showLine: true,
             },
             {
+              title: 'Junior Developer',
+              type: 'Part-time',
+              period: 'Aug 2024 – Sep 2024',
+              relativeDuration: '1 mo',
+              location: 'Ulm, Baden-Württemberg, Germany',
+              tech: 'JavaScript, HTML',
+              moreTech: ['CSS'],
+              showLine: true,
+            },
+            {
               title: 'Software Engineer',
               type: 'Internship',
               period: 'Sep 2024 – Oct 2024',
@@ -159,7 +169,7 @@ function ExperienceItem({ company, duration, type, logo, roles }: any) {
       <div className="space-y-4 flex-1">
         <div>
           <h3 className="text-xl font-bold text-foreground">{company}</h3>
-          <div className="text-sm text-muted-foreground">
+          <div className="text-[15px] text-muted-foreground">
             {duration} · {type}
           </div>
         </div>
@@ -170,7 +180,11 @@ function ExperienceItem({ company, duration, type, logo, roles }: any) {
               {/* Connector dots and lines for multiple roles */}
               {roles.length > 1 && (
                 <>
-                  <div className="absolute left-0 top-2 w-2.5 h-2.5 rounded-full bg-zinc-400 dark:bg-zinc-600 -translate-x-1/2 z-10" />
+                  <div
+                    className={`absolute left-0 top-2 rounded-full bg-zinc-400 dark:bg-zinc-600 -translate-x-1/2 z-10 ${
+                      index === 0 ? 'w-3.5 h-3.5' : 'w-2 h-2'
+                    }`}
+                  />
                   {role.showLine && (
                     <div className="absolute left-0 top-4 bottom-[-32px] w-px bg-zinc-800 -translate-x-1/2" />
                   )}
@@ -184,11 +198,11 @@ function ExperienceItem({ company, duration, type, logo, roles }: any) {
                     · {role.type}
                   </span>
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-[15px] text-muted-foreground">
                   {role.period}{' '}
                   {role.relativeDuration && `· ${role.relativeDuration}`}
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-[15px] text-muted-foreground">
                   {role.location}
                 </div>
                 {role.tech && (
@@ -247,8 +261,8 @@ function EducationItem({
             <span className="font-normal text-muted-foreground">· {type}</span>
           )}
         </div>
-        <div className="text-sm text-muted-foreground">{period}</div>
-        <div className="text-sm text-muted-foreground">{location}</div>
+        <div className="text-[15px] text-muted-foreground">{period}</div>
+        <div className="text-[15px] text-muted-foreground">{location}</div>
         {note && <div className="text-sm text-foreground mt-2">{note}</div>}
       </div>
     </div>
