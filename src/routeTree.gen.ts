@@ -9,7 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as SpeakingRouteImport } from './routes/speaking'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as DemoStrapiRouteImport } from './routes/demo/strapi'
 import { Route as DemoStoreRouteImport } from './routes/demo/store'
 import { Route as DemoStrapiArticleIdRouteImport } from './routes/demo/strapi_.$articleId'
@@ -24,9 +28,29 @@ import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpeakingRoute = SpeakingRouteImport.update({
+  id: '/speaking',
+  path: '/speaking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoStrapiRoute = DemoStrapiRouteImport.update({
@@ -96,7 +120,11 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/experience': typeof ExperienceRoute
+  '/projects': typeof ProjectsRoute
+  '/speaking': typeof SpeakingRoute
+  '/tools': typeof ToolsRoute
   '/demo/store': typeof DemoStoreRoute
   '/demo/strapi': typeof DemoStrapiRoute
   '/demo/api/names': typeof DemoApiNamesRoute
@@ -112,7 +140,11 @@ export interface FileRoutesByFullPath {
   '/demo/start/ssr': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/experience': typeof ExperienceRoute
+  '/projects': typeof ProjectsRoute
+  '/speaking': typeof SpeakingRoute
+  '/tools': typeof ToolsRoute
   '/demo/store': typeof DemoStoreRoute
   '/demo/strapi': typeof DemoStrapiRoute
   '/demo/api/names': typeof DemoApiNamesRoute
@@ -129,7 +161,11 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/experience': typeof ExperienceRoute
+  '/projects': typeof ProjectsRoute
+  '/speaking': typeof SpeakingRoute
+  '/tools': typeof ToolsRoute
   '/demo/store': typeof DemoStoreRoute
   '/demo/strapi': typeof DemoStrapiRoute
   '/demo/api/names': typeof DemoApiNamesRoute
@@ -147,7 +183,11 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
+    | '/blog'
+    | '/experience'
+    | '/projects'
+    | '/speaking'
+    | '/tools'
     | '/demo/store'
     | '/demo/strapi'
     | '/demo/api/names'
@@ -163,7 +203,11 @@ export interface FileRouteTypes {
     | '/demo/start/ssr'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
+    | '/blog'
+    | '/experience'
+    | '/projects'
+    | '/speaking'
+    | '/tools'
     | '/demo/store'
     | '/demo/strapi'
     | '/demo/api/names'
@@ -179,7 +223,11 @@ export interface FileRouteTypes {
     | '/demo/start/ssr'
   id:
     | '__root__'
-    | '/'
+    | '/blog'
+    | '/experience'
+    | '/projects'
+    | '/speaking'
+    | '/tools'
     | '/demo/store'
     | '/demo/strapi'
     | '/demo/api/names'
@@ -196,7 +244,11 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRoute
+  ExperienceRoute: typeof ExperienceRoute
+  ProjectsRoute: typeof ProjectsRoute
+  SpeakingRoute: typeof SpeakingRoute
+  ToolsRoute: typeof ToolsRoute
   DemoStoreRoute: typeof DemoStoreRoute
   DemoStrapiRoute: typeof DemoStrapiRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
@@ -214,11 +266,39 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/speaking': {
+      id: '/speaking'
+      path: '/speaking'
+      fullPath: '/speaking'
+      preLoaderRoute: typeof SpeakingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/strapi': {
@@ -316,7 +396,11 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  BlogRoute: BlogRoute,
+  ExperienceRoute: ExperienceRoute,
+  ProjectsRoute: ProjectsRoute,
+  SpeakingRoute: SpeakingRoute,
+  ToolsRoute: ToolsRoute,
   DemoStoreRoute: DemoStoreRoute,
   DemoStrapiRoute: DemoStrapiRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
