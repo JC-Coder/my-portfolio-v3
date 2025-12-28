@@ -47,10 +47,10 @@ function ToolSection({ title, children }: { title: string; children: React.React
 function ToolItem({ name, icon }: { name: string; icon: string }) {
   return (
     <div className="flex flex-col items-center gap-3 group cursor-default">
-      <div className="w-12 h-12 rounded-xl bg-secondary dark:bg-zinc-900/50 border border-border dark:border-zinc-800/50 flex items-center justify-center text-2xl group-hover:scale-110 group-hover:bg-background dark:group-hover:bg-zinc-800 transition-all duration-300 shadow-sm group-hover:shadow-md">
+      <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 group-hover:bg-zinc-100/30 dark:group-hover:bg-zinc-800/50 transition-all duration-300">
         {icon}
       </div>
-      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">
+      <span className="text-[13px] font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">
         {name}
       </span>
     </div>
