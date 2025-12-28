@@ -1,4 +1,5 @@
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, ChevronDown } from 'lucide-react'
+import { useState } from 'react'
 
 export function Projects() {
   return (
@@ -34,7 +35,7 @@ export function Projects() {
           tech={['Next.js', 'Postgres', 'TypeScript', 'Prisma', 'Upstash']}
           demoLink="#"
           logo={
-            <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-white font-bold text-xl">
+            <div className="w-12 h-12 rounded-xl bg-secondary border border-border flex items-center justify-center text-foreground font-bold text-xl">
               M
             </div>
           }
@@ -66,11 +67,14 @@ function ProjectCard({
   tech,
   demoLink,
   logo,
+  videoUrl,
 }: any) {
+  const [showVideo, setShowVideo] = useState(false)
+
   return (
     <div className="flex gap-4 group">
       <div className="shrink-0 pt-1">{logo}</div>
-      <div className="space-y-3">
+      <div className="space-y-3 flex-1">
         <div className="flex items-center gap-3">
           <h3 className="text-xl font-bold text-foreground">{title}</h3>
           {status && (
@@ -90,21 +94,49 @@ function ProjectCard({
           {tech.map((t: string) => (
             <span
               key={t}
-              className="text-xs px-3 py-1.5 rounded-md bg-zinc-900/50 text-zinc-400 border border-zinc-800/50"
+              className="text-xs px-3 py-1.5 rounded-md bg-secondary text-muted-foreground border border-border"
             >
               {t}
             </span>
           ))}
         </div>
 
-        <div className="flex items-center gap-2 pt-1">
+        <div className="flex items-center gap-6 pt-1">
           <a
             href={demoLink}
             className="text-sm flex items-center gap-2 text-foreground hover:underline font-medium"
           >
             <ExternalLink className="w-4 h-4" /> Live Demo
           </a>
+
+          <button
+            onClick={() => setShowVideo(!showVideo)}
+            className="text-sm flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium cursor-pointer"
+          >
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-300 ${showVideo ? 'rotate-180' : ''}`}
+            />
+            {showVideo ? 'Hide Video' : 'View Video'}
+          </button>
         </div>
+
+        {showVideo && (
+          <div className="mt-4 rounded-xl overflow-hidden border border-border bg-muted/50 aspect-video animate-in fade-in slide-in-from-top-2 duration-300">
+            {videoUrl ? (
+              <video
+                src={videoUrl}
+                controls
+                className="w-full h-full object-cover"
+                autoPlay
+                muted
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-muted-foreground italic text-sm">
+                Video demo coming soon...
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
