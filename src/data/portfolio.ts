@@ -1,4 +1,87 @@
-export const portfolioData = {
+export interface IRole {
+  title: string
+  type: string
+  startDate: string
+  endDate: string | 'Present'
+  location: string
+  tech: string
+  moreTech?: Array<string>
+  showLine?: boolean
+}
+
+export interface IExperience {
+  company: string
+  logoUrl?: string
+  logoType?: string
+  description?: string
+  roles: Array<IRole>
+}
+
+export interface IEducation {
+  school: string
+  degree: string
+  type?: string
+  period: string
+  location: string
+  note?: string
+  logoType: 'image' | 'text' | 'text-pill'
+  logoUrl?: string
+  logoText?: string
+  logoColor?: string
+}
+
+export interface IProject {
+  title: string
+  status: string
+  statusColor: string
+  description: string
+  tech: Array<string>
+  demoLink: string
+  logoType: string
+  logoText?: string
+  logoBg?: string
+}
+
+export interface ISocial {
+  name: string
+  link: string
+  icon: string
+}
+
+export interface IPortfolioData {
+  overview: {
+    name: string
+    intro: string
+    about: string
+  }
+  socials: Array<ISocial>
+  projects: Array<IProject>
+  experience: Array<IExperience>
+  education: Array<IEducation>
+  tools: Array<{
+    title: string
+    items: Array<{ name: string; icon: string }>
+  }>
+  blogPosts: Array<{
+    title: string
+    date: string
+    description: string
+    tags: Array<string>
+    link: string
+  }>
+  speakingEngagements: Array<{
+    title: string
+    event: string
+    date: string
+    description: string
+    image: string
+    videoUrl?: string
+    slidesUrl?: string
+    readUrl?: string
+  }>
+}
+
+export const portfolioData: IPortfolioData = {
   overview: {
     name: 'JC CODER',
     intro: "Hi, I'm Joseph",
@@ -54,107 +137,103 @@ export const portfolioData = {
   ],
   experience: [
     {
-      company: 'Koch – Bautechnik Energieberatung',
-      duration: '4 yrs 4 mos',
-      type: 'Part-time',
-      logoType: 'svg-koch',
+      company: 'Truparse',
+      logoUrl:
+        'https://media.licdn.com/dms/image/v2/C4E0BAQGzkpkoG6aNuA/company-logo_200_200/company-logo_200_200/0/1677794769514/truparse_logo?e=1768435200&v=beta&t=KAUWEtV6POu8H_P1fsg7ZuPd3AXAxXhsksbpdQKBUS0',
+      description:
+        'Worked on multiple projects - Figur (fintech), Breej (fintech), Fosad (AI Recruitment Platform), Penguine (Property booking platform) ',
       roles: [
         {
-          title: 'Office Assistant',
-          type: 'Part-time',
-          period: 'Aug 2021 – Present',
-          relativeDuration: '4 yrs 4 mos',
-          location: 'Riedlingen, Baden-Württemberg, Germany',
-          tech: 'Adobe Photoshop, Adobe XD',
+          title: 'Backend Engineer',
+          type: 'Full-time',
+          startDate: '2023-05',
+          endDate: '2024-11',
+          location: 'Remote, Nigeria',
+          tech: 'ExpressJS, NestJS, Git, JavaScript, MongoDB, NodeJS, PostgreSQL, Redis, TypeScript, HTML, CSS, AWS , DigitalOcean, Docker, NGINX, PM2, Cloudflare',
         },
       ],
     },
     {
-      company: 'RSU GmbH – E-Commerce',
-      duration: '11 mos',
-      type: 'Co-op',
-      logoType: 'custom-rsu',
+      company: 'Zed',
+      logoUrl:
+        'https://media.licdn.com/dms/image/v2/D4D0BAQEpEjoK5aUvTQ/company-logo_100_100/company-logo_100_100/0/1684958856471/pawa_ng_logo?e=1768435200&v=beta&t=wuay6x2Mhf25LQeMegFuAOkuJkzfzyiUcqh0x0-FjmM',
+      description:
+        'ReEngineered and maintained backend services for Zed, a leading fintech startup, enhancing system performance and reliability.',
       roles: [
         {
-          title: 'Software Engineer',
-          type: 'Co-op',
-          period: 'Oct 2024 – Aug 2025',
-          relativeDuration: '10 mos',
-          location: 'Ulm, Baden-Württemberg, Germany',
-          tech: 'Git, Angular',
-          moreTech: ['Laravel'],
-          showLine: true,
-        },
-        {
-          title: 'Junior Developer',
-          type: 'Part-time',
-          period: 'Aug 2024 – Sep 2024',
-          relativeDuration: '1 mo',
-          location: 'Ulm, Baden-Württemberg, Germany',
-          tech: 'JavaScript, HTML',
-          moreTech: ['CSS'],
-          showLine: true,
-        },
-        {
-          title: 'Software Engineer',
-          type: 'Internship',
-          period: 'Sep 2024 – Oct 2024',
-          location: 'Riedlingen, Baden-Württemberg, Germany',
-          tech: 'Git, Angular',
-          moreTech: ['Laravel'],
+          title: 'Backend Engineer',
+          type: 'Full-time',
+          startDate: '2023-05',
+          endDate: '2024-04',
+          location: 'Remote, Nigeria',
+          tech: 'ExpressJS, NestJS, Git, JavaScript, MongoDB, NodeJS, PostgreSQL, Redis, TypeScript, HTML, CSS, AWS , DigitalOcean, Docker, NGINX, PM2, Cloudflare',
         },
       ],
     },
     {
-      company: 'Mail0 (X25)',
-      duration: '1 mo',
-      type: 'Contract',
-      logoType: 'svg-mail0',
+      company: 'Onract',
+      logoUrl:
+        'https://media.licdn.com/dms/image/v2/D4E0BAQFu4Edf0Xy0yA/company-logo_100_100/company-logo_100_100/0/1688637502473?e=1768435200&v=beta&t=CFRBq7FndxTBzJW3DEic4LwAk_pWybR-xDj_N_s7xDo',
+      description:
+        'Worked on E-commerce application with advanced integration with social media e.g Facebook where user can make purchase directly from chat through chat bots.',
       roles: [
         {
-          title: 'Discord Community Manager',
+          title: 'Backend Engineer',
+          type: 'Full-time',
+          startDate: '2023-02',
+          endDate: '2023-12',
+          location: 'Remote, UK',
+          tech: 'TypeScript, Jest, NestJS, Git, JavaScript, PostgreSQL, Redis, AWS',
+        },
+      ],
+    },
+    {
+      company: 'Pelmedic',
+      logoUrl:
+        'https://media.licdn.com/dms/image/v2/C560BAQEMm9oUFWAXew/company-logo_100_100/company-logo_100_100/0/1630577033084?e=1768435200&v=beta&t=s4Zqpz40acqpM9f0i5oui6PtfPc0-25whZSRF_sSWmQ',
+      description:
+        'Worked on a Medical application that helps users keep track of health metrics and manage medical records efficiently.',
+      roles: [
+        {
+          title: 'Software Engineer',
           type: 'Contract',
-          period: 'Jul 2025 – Aug 2025',
-          location: 'Remote, Germany',
-          tech: 'Discord, Community',
-          moreTech: ['Customer Support'],
+          startDate: '2023-02',
+          endDate: '2023-05',
+          location: 'Remote, Nigeria',
+          tech: 'TypeScript, NestJS, Git, JavaScript, MongoDB, Redis, AWS',
+        },
+      ],
+    },
+    {
+      company: 'SpiCodeX',
+      logoUrl:
+        'https://media.licdn.com/dms/image/v2/D4D0BAQGVgnUtYOjVAg/company-logo_100_100/company-logo_100_100/0/1704624030101?e=1768435200&v=beta&t=83Pf2t2-s9MEio8sjTQGqlkkbfBg1cGDruCn_Ata0N8',
+      description:
+        'Worked on an E-commerce application for robotic and STEM education.',
+      roles: [
+        {
+          title: 'Software Engineer',
+          type: 'Contract',
+          startDate: '2023-02',
+          endDate: '2023-05',
+          location: 'Remote, Nigeria',
+          tech: 'TypeScript, NestJS, Git, JavaScript, MongoDB, Redis',
         },
       ],
     },
   ],
   education: [
-    {
-      school: 'Baden-Wuerttemberg Cooperative State University Heidenheim',
-      degree: 'Bachelor of Science - BS, Computer Science',
-      type: 'Full-time',
-      period: 'Oct 2024 - Aug 2025 · 10 mos',
-      location: 'Heidenheim, Baden-Württemberg, Germany',
-      note: 'Dropped Out',
-      logoType: 'image',
-      logoUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/e/e5/DHBW_Logo.svg',
-    },
-    {
-      school: 'Kaufmännische Schule Ehingen',
-      degree: 'Fachhochschulreife, Foreign Languages',
-      type: 'Full-time',
-      period: 'Sep 2022 - Jul 2024 · 1 yr 10 mos',
-      location: 'Ehingen, Baden-Württemberg, Germany',
-      note: 'Grade: 2.9',
-      logoType: 'text',
-      logoText: 'KSE',
-      logoColor: 'text-blue-800',
-    },
-    {
-      school: 'Geschwister-Scholl-Realschule Riedlingen',
-      degree: 'Middle School Diploma',
-      type: 'Full-time',
-      period: 'Sep 2016 - Jul 2022 · 5 yrs 10 mos',
-      location: 'Riedlingen, Baden-Württemberg, Germany',
-      note: 'Englisch, German',
-      logoType: 'text-pill',
-      logoText: 'GSR',
-    },
+    // {
+    //   school: 'Baden-Wuerttemberg Cooperative State',
+    //   degree: 'Bachelor of Science - BS, Computer Science',
+    //   type: 'Full-time',
+    //   period: 'Oct 2024 - Aug 2025 · 10 mos',
+    //   location: 'Heidenheim, Baden-Württemberg, Germany',
+    //   note: 'Dropped Out',
+    //   logoType: 'image',
+    //   logoUrl:
+    //     'https://upload.wikimedia.org/wikipedia/commons/e/e5/DHBW_Logo.svg',
+    // },
   ],
   tools: [
     {

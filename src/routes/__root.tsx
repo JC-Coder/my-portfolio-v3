@@ -1,8 +1,17 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-
+import { useState } from 'react'
+import { ProfileHeader } from '../components/ProfileHeader'
+import { Footer } from '../components/Footer'
+import { TabNavigation } from '../components/TabNavigation'
+import { Projects } from '../components/tabs/Projects'
+import { Experience } from '../components/tabs/Experience'
+import { Tools } from '../components/tabs/Tools'
+import { Blog } from '../components/tabs/Blog'
+import { Speaking } from '../components/tabs/Speaking'
 import appCss from '../styles.css?url'
+import type { TabId } from '../components/TabNavigation'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -15,7 +24,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'Dominik Koch - Software Engineer',
+        title: 'JC CODER - Software Engineer',
       },
     ],
     links: [
@@ -29,16 +38,6 @@ export const Route = createRootRoute({
   shellComponent: RootDocument,
   component: RootComponent,
 })
-
-import { ProfileHeader } from '../components/ProfileHeader'
-import { Footer } from '../components/Footer'
-import { TabNavigation, type TabId } from '../components/TabNavigation'
-import { Projects } from '../components/tabs/Projects'
-import { Experience } from '../components/tabs/Experience'
-import { Tools } from '../components/tabs/Tools'
-import { Blog } from '../components/tabs/Blog'
-import { Speaking } from '../components/tabs/Speaking'
-import { useState } from 'react'
 
 function RootComponent() {
   const [activeTab, setActiveTab] = useState<TabId>('projects')

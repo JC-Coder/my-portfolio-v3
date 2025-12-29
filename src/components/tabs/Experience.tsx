@@ -1,4 +1,8 @@
+import { useState } from 'react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
+import { calculateDuration, formatDate } from '../../lib/utils'
 import { portfolioData } from '../../data/portfolio'
+import type { IEducation, IExperience, IRole } from '../../data/portfolio'
 
 export function Experience() {
   const { experience, education } = portfolioData
@@ -19,17 +23,59 @@ export function Experience() {
       <div className="space-y-8 pt-4">
         <h2 className="text-2xl font-bold">Education</h2>
         <div className="space-y-10">
-          {education.map((item, index) => (
-            <EducationItem key={index} {...item} />
-          ))}
+          {education.length === 0 && (
+            <p className="text-muted-foreground">Data Not Available</p>
+          )}
+          {education.length > 0 &&
+            education.map((item, index) => (
+              <EducationItem key={index} {...item} />
+            ))}
         </div>
       </div>
     </div>
   )
 }
 
-function ExperienceItem({ company, duration, type, logoType, roles }: any) {
+function ExperienceItem({
+  company,
+  logoType,
+  logoUrl,
+  description,
+  roles,
+}: IExperience) {
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
+
+  // Calculate total duration and type
+  const sortedRolesByStart = [...roles].sort(
+    (a: IRole, b: IRole) =>
+      new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
+  )
+  const sortedRolesByEnd = [...roles].sort((a: IRole, b: IRole) => {
+    const endA =
+      a.endDate === 'Present'
+        ? new Date().getTime()
+        : new Date(a.endDate).getTime()
+    const endB =
+      b.endDate === 'Present'
+        ? new Date().getTime()
+        : new Date(b.endDate).getTime()
+    return endA - endB
+  })
+
+  const start = sortedRolesByStart[0].startDate
+  const end = sortedRolesByEnd[sortedRolesByEnd.length - 1].endDate
+  const totalDuration = calculateDuration(start, end)
+  const type = roles[0].type
+
   const renderLogo = () => {
+    if (logoUrl) {
+      return (
+        <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center p-1 overflow-hidden">
+          <img src={logoUrl} alt={company} className="w-full h-auto" />
+        </div>
+      )
+    }
+
     if (logoType === 'svg-koch') {
       return (
         <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center overflow-hidden">
@@ -76,8 +122,28 @@ function ExperienceItem({ company, duration, type, logoType, roles }: any) {
         <div>
           <h3 className="text-xl font-bold text-foreground">{company}</h3>
           <div className="text-[15px] text-muted-foreground">
-            {duration} · {type}
+            {totalDuration} · {type}
           </div>
+          {description && (
+            <div className="mt-3">
+              <button
+                onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {isDescriptionExpanded ? (
+                  <ChevronUp className="w-4 h-4" />
+                ) : (
+                  <ChevronDown className="w-4 h-4" />
+                )}
+                <span>Description</span>
+              </button>
+              {isDescriptionExpanded && (
+                <div className="mt-2 text-sm text-foreground leading-relaxed">
+                  {description}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="space-y-8 relative">
@@ -95,7 +161,7 @@ function ExperienceItem({ company, duration, type, logoType, roles }: any) {
                     }`}
                   />
                   {role.showLine && (
-                    <div className="absolute left-0 top-4 bottom-[-32px] w-px bg-zinc-800 -translate-x-1/2" />
+                    <div className="absolute left-0 top-4 -bottom-8 w-px bg-zinc-800 -translate-x-1/2" />
                   )}
                 </>
               )}
@@ -108,8 +174,8 @@ function ExperienceItem({ company, duration, type, logoType, roles }: any) {
                   </span>
                 </div>
                 <div className="text-[15px] text-muted-foreground">
-                  {role.period}{' '}
-                  {role.relativeDuration && `· ${role.relativeDuration}`}
+                  {formatDate(role.startDate)} – {formatDate(role.endDate)} ·{' '}
+                  {calculateDuration(role.startDate, role.endDate)}
                 </div>
                 <div className="text-[15px] text-muted-foreground">
                   {role.location}
@@ -126,23 +192,41 @@ function ExperienceItem({ company, duration, type, logoType, roles }: any) {
   )
 }
 
-function TechStack({ tech, moreTech }: { tech: string; moreTech?: string[] }) {
+function TechStack({
+  tech,
+  moreTech,
+}: {
+  tech: string
+  moreTech?: Array<string>
+}) {
+  // Parse tech string by splitting on commas and trimming whitespace
+  const techList = tech
+    .split(',')
+    .map((t) => t.trim())
+    .filter((t) => t.length > 0)
+
+  // Combine with moreTech if it exists
+  const allTech = moreTech ? [...techList, ...moreTech] : techList
+
+  // Show first 6 items, rest in tooltip
+  const visibleTech = allTech.slice(0, 6)
+  const remainingTech = allTech.slice(6)
+  const hasMore = remainingTech.length > 0
+
   return (
     <div className="text-sm text-foreground mt-2 font-medium flex items-center gap-1 flex-wrap">
-      <span>{tech}</span>
-      {moreTech && moreTech.length > 0 && (
-        <>
-          <span className="font-normal text-muted-foreground">and</span>
-          <div className="group relative">
-            <span className="underline decoration-dotted underline-offset-4 cursor-help text-muted-foreground transition-colors hover:text-foreground">
-              +{moreTech.length} {moreTech.length === 1 ? 'skill' : 'skills'}
-            </span>
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-white text-zinc-900 text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 ring-1 ring-zinc-950/10">
-              {tech}, {moreTech.join(', ')}
-              <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white" />
-            </div>
+      <span>{visibleTech.join(', ')}</span>
+      {hasMore && (
+        <div className="group relative">
+          <span className="underline decoration-dotted underline-offset-4 cursor-help text-muted-foreground transition-colors hover:text-foreground">
+            +{remainingTech.length}{' '}
+            {remainingTech.length > 0 && 'more'}
+          </span>
+          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 ring-1 ring-zinc-950/10 dark:ring-zinc-50/10 max-w-xs whitespace-wrap break-words">
+            {allTech.join(', ')}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white dark:border-t-zinc-900" />
           </div>
-        </>
+        </div>
       )}
     </div>
   )
@@ -159,7 +243,7 @@ function EducationItem({
   logoUrl,
   logoText,
   logoColor,
-}: any) {
+}: IEducation) {
   const renderLogo = () => {
     if (logoType === 'image') {
       return (
@@ -179,17 +263,13 @@ function EducationItem({
       )
     }
 
-    if (logoType === 'text-pill') {
-      return (
-        <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center p-1 overflow-hidden">
-          <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-900 font-bold text-xs">
-            {logoText}
-          </div>
+    return (
+      <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center p-1 overflow-hidden">
+        <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-900 font-bold text-xs">
+          {logoText}
         </div>
-      )
-    }
-
-    return null
+      </div>
+    )
   }
 
   return (
