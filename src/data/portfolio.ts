@@ -285,44 +285,48 @@ export const portfolioData: IPortfolioData = {
   ],
   blogPosts: [
     {
-      title: 'Resolved: Preview Deployment Vulnerability in Dokploy',
-      date: 'Jul 10, 2025',
+      title:
+        "Building a Laravel-React Todo App: A Comprehensive Beginner's Guide",
+      date: 'September 27, 2024',
       description:
-        'Dokploy allows you to spin up automatic preview deployments for GitHub. These were found to be vulnerable and should not be used by public repositories. Read the full post for more information!',
-      tags: ['Vulnerabilities'],
-      link: 'https://hashnode.com',
+        "Creating a full-stack application can seem daunting, especially for beginners. However, with the right guidance, it's entirely achievable. In this blog post, we'll walk you through building a Todo App using Laravel for the backend and React for the frontend.....",
+      tags: ['Laravel', 'React', 'PHP', 'JavaScript', 'Fullstack'],
+      link: 'https://jc-coder.hashnode.dev/building-a-laravel-react-todo-app-a-comprehensive-beginners-guide',
     },
     {
-      title: 'Why I switched to TanStack Start',
-      date: 'May 15, 2025',
+      title:
+        'From Frustration to Innovation: How I Built StartEase, Inspired by Prospark',
+      date: 'June 27, 2024',
       description:
-        'Exploring the benefits of TanStack Start for building modern web applications with type-safe routing and SSR. Discover how it simplifies the development workflow.',
-      tags: ['Web Development', 'Frameworks'],
-      link: 'https://hashnode.com',
+        "As a developer, I found myself spending way too much time setting up new projects. Whether it was a React app, a Node.js backend, or a Python script, the initial setup always felt like a chore. I thought, There's got to be a better way!.....",
+      tags: ['Open Source', 'Productivity', 'CLI', 'Node.js', 'Tooling'],
+      link: 'https://jc-coder.hashnode.dev/from-frustration-to-innovation-how-i-built-startease-inspired-by-prospark',
     },
     {
-      title: 'Mastering Tailwind CSS 4.0',
-      date: 'Mar 22, 2025',
+      title:
+        'An Easy Guide to Managing Database Migrations with NestJS and PostgreSQL',
+      date: 'August 16, 2023',
       description:
-        'A deep dive into the new features of Tailwind CSS 4.0, including the engine overhaul and CSS-first configuration. Learn how to leverage the latest updates.',
-      tags: ['Design Systems', 'CSS'],
-      link: 'https://hashnode.com',
+        "Ever felt overwhelmed by the thought of database changes as your app evolves? Fear not! Migrations are here to rescue you from the complexity, turning daunting into the doable. Think of them as your app's organizational magic - like tidying up your app's room as it grows .....",
+      tags: ['NestJS', 'PostgreSQL', 'Database', 'Migrations', 'Backend'],
+      link: 'https://jc-coder.hashnode.dev/an-easy-guide-to-managing-database-migrations-with-nestjs-and-postgresql',
     },
     {
-      title: 'The future of open source maintenance',
-      date: 'Jan 10, 2025',
+      title:
+        'From Beginner to Pro: A Guide to Learning Web Development the Right Way',
+      date: 'January 2, 2023',
       description:
-        'Reflecting on my experience maintaining Marble and the challenges of sustainable open-source development in the current ecosystem.',
-      tags: ['Open Source', 'Thoughts'],
-      link: 'https://hashnode.com',
+        "Are you looking to start your journey in the world of web development but don't know where to start? Look no further! In this blog post, we will discuss the right way to learn web development. Whether you're a complete beginner or have some experience in web development .....",
+      tags: ['Web Development', 'Career', 'Learning', 'Frontend', 'Backend'],
+      link: 'https://jc-coder.hashnode.dev/from-beginner-to-pro-a-guide-to-learning-web-development-the-right-way',
     },
     {
-      title: 'Building a type-safe API with Hono and Drizzle',
-      date: 'Nov 05, 2024',
+      title: "Beginner's Guide To Web Development (simplified)",
+      date: 'December 13, 2022',
       description:
-        'How to combine Hono and Drizzle ORM to create a robust and highly performant backend with TypeScript. Practical tips and best practices included.',
-      tags: ['Backend', 'TypeScript'],
-      link: 'https://hashnode.com',
+        'Web development, also known as website development, refers to the tasks associated with creating, building, and maintaining websites and web applications that run online on a browser. It may, however .....',
+      tags: ['Web Development', 'HTML', 'CSS', 'JavaScript', 'Beginner'],
+      link: 'https://jc-coder.hashnode.dev/beginners-guide-to-web-development-simplified',
     },
   ],
   speakingEngagements: [
