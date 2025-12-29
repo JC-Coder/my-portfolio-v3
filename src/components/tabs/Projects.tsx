@@ -1,4 +1,4 @@
-import { ExternalLink, ChevronDown } from 'lucide-react'
+import { ChevronDown, ExternalLink } from 'lucide-react'
 import { useState } from 'react'
 import { portfolioData } from '../../data/portfolio'
 
@@ -26,40 +26,22 @@ function ProjectCard({
   status,
   statusColor,
   description,
-  tech,
   demoLink,
-  logoType,
-  logoText,
-  logoBg,
+  logoUrl,
   videoUrl,
 }: any) {
   const [showVideo, setShowVideo] = useState(false)
 
   const renderLogo = () => {
-    if (logoType === 'custom-would-you-bot') {
-      return (
-        <div className="w-12 h-12 rounded-xl bg-[#2b2d31] flex items-center justify-center overflow-hidden">
-          <div className="relative w-8 h-8">
-            <div className="absolute inset-0 rounded-full border-4 border-[#ff4500] clip-path-half-left"></div>
-            <div className="absolute inset-0 rounded-full border-4 border-[#5865f2] clip-path-half-right"></div>
-          </div>
-        </div>
-      )
-    }
-
-    if (logoType === 'text') {
-      return (
-        <div
-          className={`w-12 h-12 rounded-xl border border-border flex items-center justify-center text-foreground font-bold text-xl ${
-            logoBg || 'bg-secondary'
-          } ${logoBg && logoBg !== 'bg-secondary' ? 'text-white' : ''}`}
-        >
-          {logoText}
-        </div>
-      )
-    }
-
-    return null
+    return (
+      <div className="w-12 h-12 rounded-xl border border-border flex items-center justify-center overflow-hidden bg-secondary">
+        <img
+          src={logoUrl}
+          alt={`${title} logo`}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    )
   }
 
   return (
@@ -81,53 +63,41 @@ function ProjectCard({
           {description}
         </p>
 
-        <div className="flex flex-wrap gap-2">
-          {tech.map((t: string) => (
-            <span
-              key={t}
-              className="text-xs px-3 py-1.5 rounded-md bg-secondary text-muted-foreground border border-border"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-
         <div className="flex items-center gap-6 pt-1">
-          <a
-            href={demoLink}
-            className="text-sm flex items-center gap-2 text-foreground hover:underline font-medium"
-          >
-            <ExternalLink className="w-4 h-4" /> Live Demo
-          </a>
+          {demoLink && demoLink !== '#' && (
+            <a
+              href={demoLink}
+              target="__blank"
+              className="text-sm flex items-center gap-2 text-foreground hover:underline font-medium"
+            >
+              <ExternalLink className="w-4 h-4" /> Live Demo
+            </a>
+          )}
 
-          <button
-            onClick={() => setShowVideo(!showVideo)}
-            className="text-sm flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium cursor-pointer"
-          >
-            <ChevronDown
-              className={`w-4 h-4 transition-transform duration-300 ${
-                showVideo ? 'rotate-180' : ''
-              }`}
-            />
-            {showVideo ? 'Hide Video' : 'View Video'}
-          </button>
+          {videoUrl && (
+            <button
+              onClick={() => setShowVideo(!showVideo)}
+              className="text-sm flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium cursor-pointer"
+            >
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-300 ${
+                  showVideo ? 'rotate-180' : ''
+                }`}
+              />
+              {showVideo ? 'Hide Video' : 'View Video'}
+            </button>
+          )}
         </div>
 
-        {showVideo && (
+        {showVideo && videoUrl && (
           <div className="mt-4 rounded-xl overflow-hidden border border-border bg-muted/50 aspect-video animate-in fade-in slide-in-from-top-2 duration-300">
-            {videoUrl ? (
-              <video
-                src={videoUrl}
-                controls
-                className="w-full h-full object-cover"
-                autoPlay
-                muted
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground italic text-sm">
-                Video demo coming soon...
-              </div>
-            )}
+            <video
+              src={videoUrl}
+              controls
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+            />
           </div>
         )}
       </div>

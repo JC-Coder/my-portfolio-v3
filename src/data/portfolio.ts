@@ -35,11 +35,9 @@ export interface IProject {
   status: string
   statusColor: string
   description: string
-  tech: Array<string>
-  demoLink: string
-  logoType: string
-  logoText?: string
-  logoBg?: string
+  demoLink?: string
+  videoUrl?: string
+  logoUrl: string
 }
 
 export interface ISocial {
@@ -101,38 +99,33 @@ export const portfolioData: IPortfolioData = {
   ],
   projects: [
     {
-      title: 'Would You Bot',
-      status: 'On Hold',
+      title: 'Figur',
+      status: 'live',
       statusColor: 'bg-emerald-500/10 text-emerald-500',
       description:
-        "Interactive Discord bot providing engaging 'Would You Rather' questions and community features.",
-      tech: ['Node.js', 'Discord.js', 'TypeScript', 'MongoDB', 'Docker'],
-      demoLink: '#',
-      logoType: 'custom-would-you-bot',
+        'A comprehensive financial lifestyle platform enabling seamless global payments via virtual USD cards, instant airtime-to-cash conversion, and robust business management tools including invoicing and automated revenue tracking.',
+      demoLink: 'https://figur.africa',
+      logoUrl: '/projects-logo/figur.png',
     },
     {
-      title: 'Marble',
-      status: 'Past Maintainer',
-      statusColor: 'bg-slate-500/10 text-slate-400',
+      title: 'Zedapp',
+      status: 'live',
+      statusColor: 'bg-emerald-500/10 text-emerald-500',
       description:
-        'A modern, open-source headless CMS designed for blogs and content management, built with TypeScript and Nextjs.',
-      tech: ['Next.js', 'Postgres', 'TypeScript', 'Prisma', 'Upstash'],
-      demoLink: '#',
-      logoType: 'text',
-      logoText: 'M',
-      logoBg: 'bg-secondary',
+        'A premium fintech app designed for the modern user, offering high success virtual dollar cards, utility bill payments with instant cashbacks, and significant savings on data and gift card purchases.',
+      demoLink: 'https://zedapp.co/',
+      logoUrl: '/projects-logo/zed.png',
     },
     {
-      title: 'Rivo',
-      status: 'Active',
-      statusColor: 'bg-purple-500/10 text-purple-500',
+      title: 'Porify',
+      status: 'live',
+      statusColor: 'bg-emerald-500/10 text-emerald-500',
       description:
-        'SaaS platform for managing software licenses and subscriptions.',
-      tech: ['Remix', 'Tailwind', 'Stripe', 'Supabase'],
-      demoLink: '#',
-      logoType: 'text',
-      logoText: 'R',
-      logoBg: 'bg-blue-600',
+        'An open-source, configuration-driven portfolio generator for developers that transforms project data into stunning, SEO optimized websites and professional PDF resumes with zero coding required.',
+      logoUrl: '/projects-logo/portify.png',
+      demoLink: 'https://portify.jccoder.xyz/',
+      videoUrl:
+        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/portify-preview-1.mp4',
     },
   ],
   experience: [
