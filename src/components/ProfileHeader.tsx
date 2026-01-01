@@ -1,13 +1,14 @@
 import {
+  Box,
+  Calendar,
   Github,
   Linkedin,
-  Calendar,
-  Twitter,
-  Box,
   Moon,
   Sun,
+  Twitter,
+  Youtube,
 } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getGithubLink, portfolioData } from '../data/portfolio'
 
 export function ProfileHeader() {
@@ -37,6 +38,8 @@ export function ProfileHeader() {
         return <Linkedin className="w-5 h-5" />
       case 'twitter':
         return <Twitter className="w-5 h-5" />
+      case 'youtube':
+        return <Youtube className="w-5 h-5" />
       case 'calendar':
         return <Calendar className="w-5 h-5" />
       case 'box':

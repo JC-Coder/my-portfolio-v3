@@ -94,10 +94,25 @@ export const portfolioData: IPortfolioData = {
       link: 'https://www.linkedin.com/in/jc-coder',
       icon: 'linkedin',
     },
+    {
+      name: 'YouTube',
+      link: 'https://www.youtube.com/@jc_coder',
+      icon: 'youtube',
+    },
     // { name: 'Book a call', link: '#', icon: 'calendar' },
     // { name: 'Stack', link: '#', icon: 'box' },
   ],
   projects: [
+    {
+      title: 'Boifiok',
+      status: 'live',
+      statusColor: 'bg-emerald-500/10 text-emerald-500',
+      description: 'An E-Commerce platform for group and bulk purchases.',
+      logoUrl: '/projects-logo/boifiok.png',
+      videoUrl:
+        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/boifiok/boifiok-preview.mp4',
+      // demoLink: 'https://boifiok.ng/',
+    },
     {
       title: 'Intabreej',
       status: 'live',
@@ -140,6 +155,22 @@ export const portfolioData: IPortfolioData = {
     },
   ],
   experience: [
+    {
+      company: 'Freelance',
+      logoUrl: '/projects-logo/freelance.png',
+      description:
+        'Providing specialized services across the full development lifecycle. I work as an AI Developer, Backend Engineer, Fullstack Developer, Development Support specialist, and QA Tester, helping startups and businesses build scalable, reliable solutions.',
+      roles: [
+        {
+          title: 'AI Developer, Backend Engineer & Fullstack Developer',
+          type: 'Self-employed',
+          startDate: '2024-12',
+          endDate: 'Present',
+          location: 'Remote',
+          tech: 'AI Agents, ExpressJS, NestJS, React, Next.js, TypeScript, JavaScript, PostgreSQL, MongoDB, Redis, AWS, Docker, OpenAI API, LLMs',
+        },
+      ],
+    },
     {
       company: 'Truparse',
       logoUrl:
