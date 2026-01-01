@@ -1,7 +1,12 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import {
+  HeadContent,
+  Scripts,
+  createRootRoute,
+  useLocation,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ProfileHeader } from '../components/ProfileHeader'
 import { Footer } from '../components/Footer'
 import { TabNavigation } from '../components/TabNavigation'
@@ -40,7 +45,31 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
+  const location = useLocation()
   const [activeTab, setActiveTab] = useState<TabId>('projects')
+
+  useEffect(() => {
+    const pathname = location.pathname.replace(/\//g, '') || 'projects'
+    const tabId = pathname as TabId
+    const validTabs: Array<TabId> = [
+      'projects',
+      'experience',
+      'tools',
+      'blog',
+      'speaking',
+    ]
+
+    if (validTabs.includes(tabId)) {
+      setActiveTab(tabId)
+    } else {
+      setActiveTab('projects')
+    }
+  }, [location.pathname])
+
+  const handleTabChange = (tab: TabId) => {
+    setActiveTab(tab)
+    window.history.pushState(null, '', `/${tab}`)
+  }
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -64,7 +93,7 @@ function RootComponent() {
       <main className="min-h-screen pt-20 pb-16 px-6">
         <div className="max-w-2xl mx-auto">
           <ProfileHeader />
-          <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
+          <TabNavigation activeTab={activeTab} onTabChange={handleTabChange} />
           <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
             {renderTabContent()}
           </div>
