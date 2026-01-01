@@ -99,6 +99,15 @@ export const portfolioData: IPortfolioData = {
   ],
   projects: [
     {
+      title: 'Intabreej',
+      status: 'live',
+      statusColor: 'bg-emerald-500/10 text-emerald-500',
+      description:
+        'A modern fintech platform offering seamless bill payments, swift wallet transactions, and secure virtual dollar cards for global payments, empowering users to manage their finances with ease and confidence.',
+      logoUrl: '/projects-logo/intabreej.png',
+      demoLink: 'https://intabreej.com/',
+    },
+    {
       title: 'Figur',
       status: 'live',
       statusColor: 'bg-emerald-500/10 text-emerald-500',
@@ -115,6 +124,8 @@ export const portfolioData: IPortfolioData = {
         'A premium fintech app designed for the modern user, offering high success virtual dollar cards, utility bill payments with instant cashbacks, and significant savings on data and gift card purchases.',
       demoLink: 'https://zedapp.co/',
       logoUrl: '/projects-logo/zed.png',
+      videoUrl:
+        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/zedapp/zedapp-preview.mp4',
     },
     {
       title: 'Porify',
@@ -125,7 +136,7 @@ export const portfolioData: IPortfolioData = {
       logoUrl: '/projects-logo/portify.png',
       demoLink: 'https://portify.jccoder.xyz/',
       videoUrl:
-        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/portify-preview-1.mp4',
+        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/portify/portify-preview.mp4',
     },
   ],
   experience: [
@@ -324,34 +335,53 @@ export const portfolioData: IPortfolioData = {
   ],
   speakingEngagements: [
     {
-      title: 'The Future of Type-Safe Frontend Architectures',
-      event: 'React Berlin Conference',
-      date: 'June 2025',
+      title: 'Building Safe, Secure & Scalable Solutions',
+      event: 'GDG Eket - Panel Session',
+      date: 'October 2025',
       description:
-        'A deep dive into how we can leverage TanStack Router and Start to build robust, type-safe applications that scale. Exploring the boundaries of SSR and SPA modes.',
-      image: 'https://iili.io/2aBOZJ.jpg',
-      videoUrl: 'https://youtube.com',
-      slidesUrl: 'https://speakerdeck.com',
-      readUrl: 'https://hashnode.com',
+        'Participated in a panel discussion at DevFest Eket 2025 exploring how to architect technology solutions that are safe, secure, and scalable. I shared insights on building scalable systems with limited infrastructure budgets, community influence on professional growth, and how developers can contribute to sustainable tech ecosystems.',
+      image:
+        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/speaking-engagement-photos/gdg-eket-2025.png',
     },
     {
-      title: 'Building Maintainable Open Source Projects',
-      event: 'Open Source Summit Europe',
-      date: 'March 2025',
+      title:
+        "Stop Fighting Your AI Tools: The Workflow Revolution You're Missing",
+      event: 'Pre DevFest Uyo - Workshop',
+      date: 'October 2025',
       description:
-        'Lessons learned from maintaining large-scale TypeScript projects. We discuss community management, documentation, and sustainable development practices.',
-      image: 'https://iili.io/2aBOZJ.jpg',
-      videoUrl: 'https://youtube.com',
-      readUrl: 'https://hashnode.com',
+        'A hands on workshop exploring the effective use of AI through advanced prompting techniques and optimized workflows. I shared a custom prompt / workflow that I use when working with AI agents and led a live demonstration where we built a project using AMP Code (AI Agent by sourcegraph) to showcase real world efficiency.',
+      image:
+        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/speaking-engagement-photos/pre-devfest-uyo-2025.jpeg',
     },
     {
-      title: 'CSS-in-JS vs Utility-First: The Great Debate',
-      event: 'TechTalk Hamburg',
-      date: 'November 2024',
+      title: 'Introduction To Laravel',
+      event: 'PHP Connect Uyo - Breakout Session',
+      date: 'September 2024',
       description:
-        'Comparing different styling approaches in modern React applications. Analyzing performance, developer experience, and long-term maintainability.',
-      image: 'https://iili.io/2aBOZJ.jpg',
-      slidesUrl: 'https://speakerdeck.com',
+        'A foundational session on Laravel, covering core concepts like routing, Eloquent ORM, and Blade templating. I demonstrated how to leverage the framework to build modern, scalable web applications with ease.',
+      image:
+        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/speaking-engagement-photos/php-connect-2024-intro-to-laravel.jpeg',
+      slidesUrl: 'https://jc-php-connect.netlify.app/',
+    },
+    {
+      title: 'One Week Python Training',
+      event: 'Python UGEP',
+      date: 'August 2024',
+      description:
+        'Collaborated with a team of instructors to lead a week long Python training for the UGEP community. I taught students core programming concepts and web development while overseeing project builds and awarding certifications to graduates.',
+      image:
+        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/speaking-engagement-photos/python-ugep-2024.jpeg',
+    },
+    {
+      title: 'Navigating the Tech Frontier: From Novice to Ninja',
+      event: 'DevFest Eket',
+      date: 'September 2023',
+      description:
+        'An in depth guide to succeeding in the tech industry, focusing on career advancement, networking, and professional ethics. I provided actionable advice for growth, goal setting, and developing the mental strength needed for lasting success.',
+      image:
+        'https://pub-247382da781146e3b6ec590edebded92.r2.dev/speaking-engagement-photos/devfest-eket-2023-speaker.jpeg',
+      slidesUrl:
+        'https://docs.google.com/presentation/d/1RTXSIv2awUAvjRaW05mfB9AIMOxKr6PyGYfakG3X3tE/edit?usp=sharing',
     },
   ],
 }

@@ -1,4 +1,4 @@
-import { Play, Monitor, FileText } from 'lucide-react'
+import { FileText, Monitor, Play } from 'lucide-react'
 import { portfolioData } from '../../data/portfolio'
 
 export function Speaking() {
@@ -46,7 +46,7 @@ function SpeakingItem({ engagement }: { engagement: any }) {
           </h3>
         </div>
 
-        <p className="text-muted-foreground leading-relaxed text-[15px] line-clamp-2 md:line-clamp-none">
+        <p className="text-muted-foreground leading-relaxed text-[15px]">
           {engagement.description}
         </p>
 
