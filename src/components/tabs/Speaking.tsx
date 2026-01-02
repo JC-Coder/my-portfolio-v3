@@ -1,5 +1,6 @@
 import { FileText, Monitor, Play } from 'lucide-react'
 import { portfolioData } from '../../data/portfolio'
+import { usePostHogEvents } from '../../hooks/usePostHog'
 
 export function Speaking() {
   const { speakingEngagements } = portfolioData
@@ -24,6 +25,8 @@ export function Speaking() {
 }
 
 function SpeakingItem({ engagement }: { engagement: any }) {
+  const { trackTalkClick } = usePostHogEvents()
+
   return (
     <div className="flex flex-col md:flex-row rounded-2xl border border-border bg-background overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
       {/* Left Column: Image */}
@@ -57,6 +60,9 @@ function SpeakingItem({ engagement }: { engagement: any }) {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 hover:scale-105 active:scale-95"
+              onClick={() =>
+                trackTalkClick(engagement.title, engagement.videoUrl)
+              }
             >
               <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                 <Play className="w-3.5 h-3.5 fill-current" />
@@ -71,6 +77,9 @@ function SpeakingItem({ engagement }: { engagement: any }) {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 hover:scale-105 active:scale-95"
+              onClick={() =>
+                trackTalkClick(engagement.title, engagement.slidesUrl)
+              }
             >
               <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                 <Monitor className="w-3.5 h-3.5" />
@@ -85,6 +94,9 @@ function SpeakingItem({ engagement }: { engagement: any }) {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 hover:scale-105 active:scale-95"
+              onClick={() =>
+                trackTalkClick(engagement.title, engagement.readUrl)
+              }
             >
               <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                 <FileText className="w-3.5 h-3.5" />

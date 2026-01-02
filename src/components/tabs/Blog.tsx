@@ -1,4 +1,5 @@
 import { portfolioData } from '../../data/portfolio'
+import { usePostHogEvents } from '../../hooks/usePostHog'
 
 export function Blog() {
   const { blogPosts } = portfolioData
@@ -22,12 +23,15 @@ export function Blog() {
 }
 
 function BlogItem({ post }: { post: any }) {
+  const { trackBlogPostClick } = usePostHogEvents()
+
   return (
     <a
       href={post.link}
       target="_blank"
       rel="noopener noreferrer"
       className="block group p-6 -mx-6 rounded-2xl border border-transparent hover:border-border hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-all duration-300 shadow-none hover:shadow-sm"
+      onClick={() => trackBlogPostClick(post.title, post.link)}
     >
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">

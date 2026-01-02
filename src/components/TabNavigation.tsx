@@ -1,3 +1,5 @@
+import { usePostHogEvents } from '../hooks/usePostHog'
+
 export type TabId = 'projects' | 'experience' | 'tools' | 'blog' | 'speaking'
 
 interface TabNavigationProps {
@@ -6,6 +8,8 @@ interface TabNavigationProps {
 }
 
 export function TabNavigation({ activeTab, onTabChange }: TabNavigationProps) {
+  const { trackTabChange } = usePostHogEvents()
+
   const tabs: { id: TabId; name: string }[] = [
     { id: 'projects', name: 'Projects' },
     { id: 'experience', name: 'Experience' },
@@ -22,7 +26,10 @@ export function TabNavigation({ activeTab, onTabChange }: TabNavigationProps) {
             key={tab.id}
             name={tab.name}
             isActive={activeTab === tab.id}
-            onClick={() => onTabChange(tab.id)}
+            onClick={() => {
+              onTabChange(tab.id)
+              trackTabChange(tab.id)
+            }}
           />
         ))}
       </div>

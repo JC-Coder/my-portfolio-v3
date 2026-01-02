@@ -10,10 +10,13 @@ import {
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { getGithubLink, portfolioData } from '../data/portfolio'
+import { usePostHogEvents } from '../hooks/usePostHog'
 
 export function ProfileHeader() {
   const [isDark, setIsDark] = useState(true)
   const { overview, socials } = portfolioData
+
+  const { trackSocialLinkClick } = usePostHogEvents()
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -57,12 +60,16 @@ export function ProfileHeader() {
         </h1>
 
         <div className="flex items-center gap-4">
+          {/* Github Link */}
           <a
             href={getGithubLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
             aria-label="GitHub Profile"
+            onClick={() => {
+              trackSocialLinkClick('github', getGithubLink()!)
+            }}
           >
             <Github className="w-5 h-5" />
             <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[11px] font-medium rounded opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap shadow-xl z-50 scale-95 group-hover:scale-100">
@@ -70,6 +77,8 @@ export function ProfileHeader() {
               <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100"></span>
             </span>
           </a>
+
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             className="group relative flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors focus:outline-none cursor-pointer"
@@ -107,6 +116,9 @@ export function ProfileHeader() {
             href={social.link}
             icon={getIcon(social.icon)}
             label={social.name}
+            onClick={() => {
+              trackSocialLinkClick(social.name, social.link)
+            }}
           />
         ))}
       </div>
@@ -118,10 +130,12 @@ function SocialLink({
   href,
   icon,
   label,
+  onClick,
 }: {
   href: string
   icon: React.ReactNode
   label: string
+  onClick?: () => void
 }) {
   return (
     <a
@@ -130,6 +144,7 @@ function SocialLink({
       rel="noopener noreferrer"
       className="group relative flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors p-2 -ml-2 first:ml-0 rounded-md hover:bg-muted/50"
       aria-label={label}
+      onClick={onClick}
     >
       {icon}
       <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[11px] font-medium rounded opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap shadow-xl z-50 scale-95 group-hover:scale-100">

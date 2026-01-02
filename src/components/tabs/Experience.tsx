@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react'
 import { calculateDuration, formatDate } from '../../lib/utils'
 import { portfolioData } from '../../data/portfolio'
 import type { IEducation, IExperience, IRole } from '../../data/portfolio'
+import { usePostHogEvents } from '../../hooks/usePostHog'
 
 export function Experience() {
   const { experience, education } = portfolioData
@@ -44,6 +45,7 @@ function ExperienceItem({
   roles,
 }: IExperience) {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
+  const { trackExperienceDescriptionClick } = usePostHogEvents()
 
   // Calculate total duration and type
   const sortedRolesByStart = [...roles].sort(
@@ -127,7 +129,10 @@ function ExperienceItem({
           {description && (
             <div className="mt-3">
               <button
-                onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                onClick={() => {
+                  setIsDescriptionExpanded(!isDescriptionExpanded)
+                  trackExperienceDescriptionClick(company)
+                }}
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
                 {isDescriptionExpanded ? (
@@ -219,8 +224,7 @@ function TechStack({
       {hasMore && (
         <div className="group relative">
           <span className="underline decoration-dotted underline-offset-4 cursor-help text-muted-foreground transition-colors hover:text-foreground">
-            +{remainingTech.length}{' '}
-            {remainingTech.length > 0 && 'more'}
+            +{remainingTech.length} {remainingTech.length > 0 && 'more'}
           </span>
           <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 ring-1 ring-zinc-950/10 dark:ring-zinc-50/10 max-w-xs whitespace-wrap break-words">
             {allTech.join(', ')}

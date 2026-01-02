@@ -17,6 +17,17 @@ import { Blog } from '../components/tabs/Blog'
 import { Speaking } from '../components/tabs/Speaking'
 import appCss from '../styles.css?url'
 import type { TabId } from '../components/TabNavigation'
+import { PostHogProvider } from 'posthog-js/react'
+import posthog from 'posthog-js'
+
+if (typeof window !== 'undefined') {
+  posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
+    api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+    person_profiles: 'identified_only', // Or 'always' if you want to track anonymous users fully
+    capture_pageview: true,
+    capture_pageleave: true,
+  })
+}
 
 export const Route = createRootRoute({
   head: () => ({
@@ -90,25 +101,30 @@ function RootComponent() {
 
   return (
     <>
-      <main className="min-h-screen pt-20 pb-16 px-6">
-        <div className="max-w-2xl mx-auto">
-          <ProfileHeader />
-          <TabNavigation activeTab={activeTab} onTabChange={handleTabChange} />
-          <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
-            {renderTabContent()}
+      <PostHogProvider client={posthog}>
+        <main className="min-h-screen pt-20 pb-16 px-6">
+          <div className="max-w-2xl mx-auto">
+            <ProfileHeader />
+            <TabNavigation
+              activeTab={activeTab}
+              onTabChange={handleTabChange}
+            />
+            <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
+              {renderTabContent()}
+            </div>
+            <div className="mt-20 border-t border-border pt-8">
+              <Footer />
+            </div>
           </div>
-          <div className="mt-20 border-t border-border pt-8">
-            <Footer />
-          </div>
-        </div>
-      </main>
+        </main>
+      </PostHogProvider>
     </>
   )
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{

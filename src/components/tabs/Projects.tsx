@@ -1,6 +1,7 @@
 import { ChevronDown, ExternalLink } from 'lucide-react'
 import { useState } from 'react'
 import { portfolioData } from '../../data/portfolio'
+import { usePostHogEvents } from '../../hooks/usePostHog'
 
 export function Projects() {
   const { projects } = portfolioData
@@ -31,6 +32,9 @@ function ProjectCard({
   videoUrl,
 }: any) {
   const [showVideo, setShowVideo] = useState(false)
+  const {
+    project: { trackDemoUrlClick, trackVideoClick },
+  } = usePostHogEvents()
 
   const renderLogo = () => {
     return (
@@ -69,6 +73,9 @@ function ProjectCard({
               href={demoLink}
               target="__blank"
               className="text-sm flex items-center gap-2 text-foreground hover:underline font-medium"
+              onClick={() => {
+                trackDemoUrlClick(title, demoLink)
+              }}
             >
               <ExternalLink className="w-4 h-4" /> Live Demo
             </a>
@@ -76,7 +83,10 @@ function ProjectCard({
 
           {videoUrl && (
             <button
-              onClick={() => setShowVideo(!showVideo)}
+              onClick={() => {
+                setShowVideo(!showVideo)
+                trackVideoClick(title)
+              }}
               className="text-sm flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium cursor-pointer"
             >
               <ChevronDown
