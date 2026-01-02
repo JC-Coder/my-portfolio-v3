@@ -1,5 +1,4 @@
-import posthogReactPkg from '@posthog/react'
-const { usePostHog } = posthogReactPkg
+import { usePostHog } from '@posthog/react'
 
 export function usePostHogEvents() {
   const posthog = usePostHog()
