@@ -11,15 +11,12 @@ export const initGA = () => {
 
   // Initialize the dataLayer and gtag function
   window.dataLayer = window.dataLayer || []
-  function gtag(...args: any[]) {
-    window.dataLayer.push(args)
+  window.gtag = function () {
+    window.dataLayer.push(arguments)
   }
 
-  // Attach gtag to window so we can use it elsewhere
-  ;(window as any).gtag = gtag
-
-  gtag('js', new Date())
-  gtag('config', GA_ID, {
+  window.gtag('js', new Date())
+  window.gtag('config', GA_ID, {
     page_path: window.location.pathname,
   })
 }
