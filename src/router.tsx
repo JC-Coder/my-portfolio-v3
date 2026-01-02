@@ -1,7 +1,5 @@
 import { createRouter } from '@tanstack/react-router'
 
-import * as Sentry from '@sentry/tanstackstart-react'
-
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
@@ -14,15 +12,6 @@ export const getRouter = () => {
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
   })
-
-  if (!router.isServer) {
-    Sentry.init({
-      dsn: import.meta.env.VITE_SENTRY_DSN,
-      integrations: [],
-      tracesSampleRate: 1.0,
-      sendDefaultPii: true,
-    })
-  }
 
   return router
 }
