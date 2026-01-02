@@ -19,7 +19,6 @@ import appCss from '../styles.css?url'
 import type { TabId } from '../components/TabNavigation'
 import { PostHogProvider } from '@posthog/react'
 import posthog from 'posthog-js'
-import { initGA } from '../lib/analytics'
 
 if (typeof window !== 'undefined') {
   posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
@@ -59,10 +58,6 @@ export const Route = createRootRoute({
 function RootComponent() {
   const location = useLocation()
   const [activeTab, setActiveTab] = useState<TabId>('projects')
-
-  useEffect(() => {
-    initGA()
-  }, [])
 
   useEffect(() => {
     const pathname = location.pathname.replace(/\//g, '') || 'projects'
@@ -128,9 +123,29 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const GA_ID = import.meta.env.VITE_PUBLIC_GA_ID
+
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        {GA_ID && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GA_ID}');
+                `,
+              }}
+            />
+          </>
+        )}
         <script
           dangerouslySetInnerHTML={{
             __html: `
