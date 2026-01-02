@@ -17,7 +17,8 @@ import { Blog } from '../components/tabs/Blog'
 import { Speaking } from '../components/tabs/Speaking'
 import appCss from '../styles.css?url'
 import type { TabId } from '../components/TabNavigation'
-import { PostHogProvider } from 'posthog-js/react'
+import posthogReactPkg from '@posthog/react'
+const { PostHogProvider } = posthogReactPkg
 import posthog from 'posthog-js'
 
 if (typeof window !== 'undefined') {
