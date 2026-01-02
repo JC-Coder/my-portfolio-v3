@@ -19,6 +19,7 @@ import appCss from '../styles.css?url'
 import type { TabId } from '../components/TabNavigation'
 import { PostHogProvider } from '@posthog/react'
 import posthog from 'posthog-js'
+import { initGA } from '../lib/analytics'
 
 if (typeof window !== 'undefined') {
   posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
@@ -58,6 +59,10 @@ export const Route = createRootRoute({
 function RootComponent() {
   const location = useLocation()
   const [activeTab, setActiveTab] = useState<TabId>('projects')
+
+  useEffect(() => {
+    initGA()
+  }, [])
 
   useEffect(() => {
     const pathname = location.pathname.replace(/\//g, '') || 'projects'

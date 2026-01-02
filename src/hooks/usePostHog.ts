@@ -7,7 +7,16 @@ export function usePostHogEvents() {
     eventName: string,
     properties: Record<string, any> = {},
   ) => {
+    // track in posthog
     posthog.capture(eventName, properties)
+
+    // track in google analytics
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', eventName, {
+        ...properties,
+        timestamp: new Date().toISOString(),
+      })
+    }
   }
 
   return {
