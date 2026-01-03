@@ -153,8 +153,8 @@ function RootComponent() {
   const [activeTab, setActiveTab] = useState<TabId>('projects')
 
   useEffect(() => {
-    const pathname = location.pathname.replace(/\//g, '') || 'projects'
-    const tabId = pathname as TabId
+    const rawPath = location.pathname.split('/')[1] || 'projects'
+    const tabId = rawPath as TabId
     const validTabs: Array<TabId> = [
       'projects',
       'experience',
@@ -163,9 +163,11 @@ function RootComponent() {
       'speaking',
     ]
 
+    // Only update tab if it's a valid tab and doesn't look like a static file (contains a dot)
     if (validTabs.includes(tabId)) {
       setActiveTab(tabId)
-    } else {
+    } else if (!location.pathname.includes('.')) {
+      // If it's not a valid tab but also NOT a file, default to projects
       setActiveTab('projects')
     }
   }, [location.pathname])
