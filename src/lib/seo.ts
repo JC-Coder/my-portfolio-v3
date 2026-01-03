@@ -15,20 +15,19 @@ export const SITE_URL = 'https://jccoder.xyz'
 export const DEFAULT_OG_IMAGE = '/og-image-jc.png'
 
 export const DEFAULT_SEO: ISEOConfig = {
-  title: 'JC Coder - Senior Full-Stack Engineer & AI Automation Architect',
+  title: 'JC Coder - Full-Stack Developer & Web Designer | Portfolio',
   description:
-    'Senior Software Engineer specializing in scalable systems, AI-powered automation, Web3, and high-performance JavaScript/TypeScript architectures. Open Source contributor and DevOps expert.',
+    'Full-stack developer and designer building modern web applications, sites, and digital tools. Explore my projects, experience, and technical insights.',
   keywords: [
-    'Software Engineer',
+    'Web Developer',
+    'Web Designer',
     'Full-Stack Developer',
-    'JavaScript Expert',
-    'TypeScript Developer',
-    'AI Automation Architect',
-    'Web3 Developer',
-    'DevOps Engineer',
-    'Open Source Contributor',
-    'Dev Support',
-    'Scalable Systems',
+    'React Developer',
+    'Node.js',
+    'Portfolio',
+    'Projects',
+    'JavaScript',
+    'TypeScript',
   ],
   canonical: SITE_URL,
   ogType: 'website',
@@ -43,40 +42,37 @@ export const PAGE_SEO: Record<string, ISEOConfig> = {
   },
   projects: {
     ...DEFAULT_SEO,
-    title:
-      'High-Impact Engineering: Portfolio of AI & Fintech Solutions | JC Coder',
+    title: 'Projects & Portfolio - JC Coder | Web Development',
     description:
-      'Explore a portfolio of high-stakes engineering projects including AI agents, Fintech platforms, and scalable Web3 infrastructure built by Joseph (JC Coder).',
+      'A collection of web applications, fintech tools, and creative projects built with modern technologies.',
     canonical: `${SITE_URL}/projects`,
   },
   experience: {
     ...DEFAULT_SEO,
-    title:
-      'Engineering Experience - Full-Stack & Systems Architecture | JC Coder',
+    title: 'Work Experience - JC Coder | Software Engineering',
     description:
-      'Professional experience in architecting robust backend systems, lead developer roles, and deep contributions to the Open Source ecosystem.',
+      'My professional journey as a developer, from startups to open source contributions and technical support.',
     canonical: `${SITE_URL}/experience`,
   },
   speaking: {
     ...DEFAULT_SEO,
-    title:
-      'Speaking Engagements - Dev Advocate & Technical Educator | JC Coder',
+    title: 'Speaking & Workshops - JC Coder',
     description:
-      'Technical talks and workshops on AI, automation, and modern web engineering delivered at GDG, DevFest, and international tech conferences.',
+      "Talks, conference sessions, and technical workshops I've led for the developer community.",
     canonical: `${SITE_URL}/speaking`,
   },
   blog: {
     ...DEFAULT_SEO,
-    title: 'JC Coder Blog - Deep Dives into Engineering & Automation',
+    title: 'Blog & Articles - JC Coder | Web Insights',
     description:
-      'Technical articles on JavaScript, TypeScript, AI agents, and scaling digital products.',
+      'Read about web development, coding tips, and my experiences in the tech industry.',
     canonical: `${SITE_URL}/blog`,
   },
   tools: {
     ...DEFAULT_SEO,
-    title: 'Tech Stack & Engineering Tools | JC Coder',
+    title: 'Tech Stack & Tools I Use - JC Coder',
     description:
-      'The modern tech stack used to build high-performance applications: React, Node.js, AWS, Docker, and AI tools.',
+      'The languages, frameworks, and tools I use to build modern websites and software.',
     canonical: `${SITE_URL}/tools`,
   },
 }
