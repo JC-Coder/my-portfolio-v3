@@ -42,6 +42,9 @@ export const PAGE_SEO: Record<string, ISEOConfig> = {
   home: {
     ...DEFAULT_SEO,
   },
+  '': {
+    ...DEFAULT_SEO,
+  },
   projects: {
     ...DEFAULT_SEO,
     title: 'Projects & Portfolio - JC Coder | Web Development',
