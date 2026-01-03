@@ -114,6 +114,15 @@ export const portfolioData: IPortfolioData = {
       // demoLink: 'https://boifiok.ng/',
     },
     {
+      title: 'Pelmedic',
+      status: 'live',
+      statusColor: 'bg-emerald-500/10 text-emerald-500',
+      description:
+        'A comprehensive health care application that helps users keep track of health metrics and manage medical records efficiently.',
+      logoUrl:
+        'https://media.licdn.com/dms/image/v2/C560BAQEMm9oUFWAXew/company-logo_100_100/company-logo_100_100/0/1630577033084?e=1768435200&v=beta&t=s4Zqpz40acqpM9f0i5oui6PtfPc0-25whZSRF_sSWmQ',
+    },
+    {
       title: 'Intabreej',
       status: 'live',
       statusColor: 'bg-emerald-500/10 text-emerald-500',
