@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://jccoder.xyz/sitemap.xml
+Sitemap: https://www.jccoder.xyz/sitemap.xml

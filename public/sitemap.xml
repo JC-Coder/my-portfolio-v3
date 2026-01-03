@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jccoder.xyz/</loc>
+    <loc>https://www.jccoder.xyz/</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://jccoder.xyz/projects</loc>
+    <loc>https://www.jccoder.xyz/projects</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jccoder.xyz/experience</loc>
+    <loc>https://www.jccoder.xyz/experience</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://jccoder.xyz/speaking</loc>
+    <loc>https://www.jccoder.xyz/speaking</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://jccoder.xyz/blog</loc>
+    <loc>https://www.jccoder.xyz/blog</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jccoder.xyz/tools</loc>
+    <loc>https://www.jccoder.xyz/tools</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
