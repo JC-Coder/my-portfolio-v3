@@ -19,6 +19,7 @@ import appCss from '../styles.css?url'
 import type { TabId } from '../components/TabNavigation'
 import { PostHogProvider } from '@posthog/react'
 import posthog from 'posthog-js'
+import { PAGE_SEO, DEFAULT_SEO, SITE_URL } from '../lib/seo'
 
 if (typeof window !== 'undefined') {
   posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
@@ -40,7 +41,51 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'JC CODER - Software Engineer',
+        title: DEFAULT_SEO.title,
+      },
+      {
+        name: 'description',
+        content: DEFAULT_SEO.description,
+      },
+      {
+        name: 'keywords',
+        content: DEFAULT_SEO.keywords?.join(', '),
+      },
+      {
+        property: 'og:title',
+        content: DEFAULT_SEO.title,
+      },
+      {
+        property: 'og:description',
+        content: DEFAULT_SEO.description,
+      },
+      {
+        property: 'og:image',
+        content: DEFAULT_SEO.ogImage,
+      },
+      {
+        property: 'og:url',
+        content: SITE_URL,
+      },
+      {
+        property: 'og:type',
+        content: DEFAULT_SEO.ogType,
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:title',
+        content: DEFAULT_SEO.title,
+      },
+      {
+        name: 'twitter:description',
+        content: DEFAULT_SEO.description,
+      },
+      {
+        name: 'twitter:image',
+        content: DEFAULT_SEO.ogImage,
       },
     ],
     links: [
@@ -90,6 +135,16 @@ function RootComponent() {
       setActiveTab('projects')
     }
   }, [location.pathname])
+
+  // Update document title and meta dynamically on tab change
+  useEffect(() => {
+    const seo = PAGE_SEO[activeTab] || DEFAULT_SEO
+    document.title = seo.title
+    const metaDescription = document.querySelector('meta[name="description"]')
+    if (metaDescription) {
+      metaDescription.setAttribute('content', seo.description)
+    }
+  }, [activeTab])
 
   const handleTabChange = (tab: TabId) => {
     setActiveTab(tab)
@@ -168,6 +223,49 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 document.documentElement.style.colorScheme = 'dark';
               })();
             `,
+          }}
+        />
+        {/* Person Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Joseph',
+              alternateName: 'JC Coder',
+              url: SITE_URL,
+              image: `${SITE_URL}${DEFAULT_SEO.ogImage}`,
+              jobTitle: 'Software Engineer',
+              description: DEFAULT_SEO.description,
+              sameAs: [
+                'https://github.com/jc-coder',
+                'https://x.com/jc_coder1',
+                'https://www.linkedin.com/in/jc-coder',
+                'https://www.youtube.com/@jc_coder',
+              ],
+            }),
+          }}
+        />
+        {/* ProfessionalService Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'ProfessionalService',
+              name: 'JC Coder Engineering',
+              image: `${SITE_URL}${DEFAULT_SEO.ogImage}`,
+              url: SITE_URL,
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Nigeria',
+                addressCountry: 'NG',
+              },
+              description:
+                'Specialized Software Engineering services including AI Agents, Web3 Infrastructure, and Full-Stack Development.',
+              priceRange: '$$',
+            }),
           }}
         />
         <HeadContent />
