@@ -19,7 +19,13 @@ import appCss from '../styles.css?url'
 import type { TabId } from '../components/TabNavigation'
 import { PostHogProvider } from '@posthog/react'
 import posthog from 'posthog-js'
-import { PAGE_SEO, DEFAULT_SEO, SITE_URL } from '../lib/seo'
+import {
+  PAGE_SEO,
+  DEFAULT_SEO,
+  SITE_URL,
+  OG_IMAGE_WIDTH,
+  OG_IMAGE_HEIGHT,
+} from '../lib/seo'
 
 if (typeof window !== 'undefined') {
   posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
@@ -72,8 +78,36 @@ export const Route = createRootRoute({
         content: DEFAULT_SEO.ogType,
       },
       {
+        property: 'og:image:width',
+        content: String(OG_IMAGE_WIDTH),
+      },
+      {
+        property: 'og:image:height',
+        content: String(OG_IMAGE_HEIGHT),
+      },
+      {
+        property: 'og:image:type',
+        content: 'image/jpeg',
+      },
+      {
+        property: 'og:site_name',
+        content: 'JC Coder',
+      },
+      {
+        property: 'og:locale',
+        content: 'en_US',
+      },
+      {
         name: 'twitter:card',
         content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:site',
+        content: '@jc_coder1',
+      },
+      {
+        name: 'twitter:creator',
+        content: '@jc_coder1',
       },
       {
         name: 'twitter:title',
@@ -235,7 +269,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
               name: 'Joseph',
               alternateName: 'JC Coder',
               url: SITE_URL,
-              image: `${SITE_URL}${DEFAULT_SEO.ogImage}`,
+              image: DEFAULT_SEO.ogImage,
               jobTitle: 'Software Engineer',
               description: DEFAULT_SEO.description,
               sameAs: [
@@ -255,7 +289,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
               '@context': 'https://schema.org',
               '@type': 'ProfessionalService',
               name: 'JC Coder Engineering',
-              image: `${SITE_URL}${DEFAULT_SEO.ogImage}`,
+              image: DEFAULT_SEO.ogImage,
               url: SITE_URL,
               address: {
                 '@type': 'PostalAddress',

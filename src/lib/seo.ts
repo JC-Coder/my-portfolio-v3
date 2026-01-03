@@ -12,7 +12,9 @@ export interface ISEOConfig {
 }
 
 export const SITE_URL = 'https://jccoder.xyz'
-export const DEFAULT_OG_IMAGE = '/og-image-jc.png'
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image-jc.jpg`
+export const OG_IMAGE_WIDTH = 1016
+export const OG_IMAGE_HEIGHT = 465
 
 export const DEFAULT_SEO: ISEOConfig = {
   title: 'JC Coder - Full-Stack Developer & Web Designer | Portfolio',
