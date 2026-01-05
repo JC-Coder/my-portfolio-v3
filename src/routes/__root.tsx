@@ -7,6 +7,8 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { useEffect, useState } from 'react'
+import { PostHogProvider } from '@posthog/react'
+import posthog from 'posthog-js'
 import { ProfileHeader } from '../components/ProfileHeader'
 import { Footer } from '../components/Footer'
 import { TabNavigation } from '../components/TabNavigation'
@@ -16,16 +18,13 @@ import { Tools } from '../components/tabs/Tools'
 import { Blog } from '../components/tabs/Blog'
 import { Speaking } from '../components/tabs/Speaking'
 import appCss from '../styles.css?url'
-import type { TabId } from '../components/TabNavigation'
-import { PostHogProvider } from '@posthog/react'
-import posthog from 'posthog-js'
 import {
-  PAGE_SEO,
   DEFAULT_SEO,
-  SITE_URL,
-  OG_IMAGE_WIDTH,
   OG_IMAGE_HEIGHT,
+  OG_IMAGE_WIDTH,
+  SITE_URL,
 } from '../lib/seo'
+import type { TabId } from '../components/TabNavigation'
 
 if (typeof window !== 'undefined') {
   posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
@@ -171,16 +170,6 @@ function RootComponent() {
       setActiveTab('projects')
     }
   }, [location.pathname])
-
-  // Update document title and meta dynamically on tab change
-  useEffect(() => {
-    const seo = PAGE_SEO[activeTab] || DEFAULT_SEO
-    document.title = seo.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    if (metaDescription) {
-      metaDescription.setAttribute('content', seo.description)
-    }
-  }, [activeTab])
 
   const handleTabChange = (tab: TabId) => {
     setActiveTab(tab)
