@@ -18,12 +18,7 @@ import { Tools } from '../components/tabs/Tools'
 import { Blog } from '../components/tabs/Blog'
 import { Speaking } from '../components/tabs/Speaking'
 import appCss from '../styles.css?url'
-import {
-  DEFAULT_SEO,
-  OG_IMAGE_HEIGHT,
-  OG_IMAGE_WIDTH,
-  SITE_URL,
-} from '../lib/seo'
+import { DEFAULT_SEO, SITE_URL, generateSEOHead } from '../lib/seo'
 import type { TabId } from '../components/TabNavigation'
 
 if (typeof window !== 'undefined') {
@@ -36,113 +31,43 @@ if (typeof window !== 'undefined') {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
-      {
-        title: DEFAULT_SEO.title,
-      },
-      {
-        name: 'description',
-        content: DEFAULT_SEO.description,
-      },
-      {
-        name: 'keywords',
-        content: DEFAULT_SEO.keywords?.join(', '),
-      },
-      {
-        property: 'og:title',
-        content: DEFAULT_SEO.title,
-      },
-      {
-        property: 'og:description',
-        content: DEFAULT_SEO.description,
-      },
-      {
-        property: 'og:image',
-        content: DEFAULT_SEO.ogImage,
-      },
-      {
-        property: 'og:url',
-        content: SITE_URL,
-      },
-      {
-        property: 'og:type',
-        content: DEFAULT_SEO.ogType,
-      },
-      {
-        property: 'og:image:width',
-        content: String(OG_IMAGE_WIDTH),
-      },
-      {
-        property: 'og:image:height',
-        content: String(OG_IMAGE_HEIGHT),
-      },
-      {
-        property: 'og:image:type',
-        content: 'image/jpeg',
-      },
-      {
-        property: 'og:site_name',
-        content: 'JC Coder',
-      },
-      {
-        property: 'og:locale',
-        content: 'en_US',
-      },
-      {
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-      {
-        name: 'twitter:site',
-        content: '@jc_coder1',
-      },
-      {
-        name: 'twitter:creator',
-        content: '@jc_coder1',
-      },
-      {
-        name: 'twitter:title',
-        content: DEFAULT_SEO.title,
-      },
-      {
-        name: 'twitter:description',
-        content: DEFAULT_SEO.description,
-      },
-      {
-        name: 'twitter:image',
-        content: DEFAULT_SEO.ogImage,
-      },
-    ],
-    links: [
-      {
-        rel: 'stylesheet',
-        href: appCss,
-      },
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico',
-      },
-      {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        href: '/apple-touch-icon.png',
-      },
-      {
-        rel: 'manifest',
-        href: '/manifest.json',
-      },
-    ],
-  }),
-
+  head: () => {
+    const seo = generateSEOHead('')
+    return {
+      ...seo,
+      meta: [
+        ...seo.meta,
+        {
+          charSet: 'utf-8',
+        },
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1',
+        },
+      ],
+      links: [
+        ...seo.links,
+        {
+          rel: 'stylesheet',
+          href: appCss,
+        },
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: '/favicon.ico',
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+        {
+          rel: 'manifest',
+          href: '/manifest.json',
+        },
+      ],
+    }
+  },
   shellComponent: RootDocument,
   component: RootComponent,
 })
@@ -171,11 +96,6 @@ function RootComponent() {
     }
   }, [location.pathname])
 
-  const handleTabChange = (tab: TabId) => {
-    setActiveTab(tab)
-    window.history.pushState(null, '', `/${tab}`)
-  }
-
   const renderTabContent = () => {
     switch (activeTab) {
       case 'projects':
@@ -199,10 +119,7 @@ function RootComponent() {
         <main className="min-h-screen pt-20 pb-16 px-6">
           <div className="max-w-2xl mx-auto">
             <ProfileHeader />
-            <TabNavigation
-              activeTab={activeTab}
-              onTabChange={handleTabChange}
-            />
+            <TabNavigation activeTab={activeTab} />
             <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
               {renderTabContent()}
             </div>

@@ -135,4 +135,4 @@ The project is configured for **Netlify**.
 
 ---
 
-Built with ❤️ by [JC Coder](https://www.jccoder.xyz)
+Built with ❤️ by [JC Coder](https://jccoder.xyz)
