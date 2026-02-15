@@ -103,6 +103,7 @@ export const portfolioData: IPortfolioData = {
     // { name: 'Stack', link: '#', icon: 'box' },
   ],
   projects: [
+    // WORK PROJECTS
     {
       title: 'Boifiok',
       status: 'live',
@@ -119,8 +120,7 @@ export const portfolioData: IPortfolioData = {
       statusColor: 'bg-emerald-500/10 text-emerald-500',
       description:
         'A comprehensive health care application that helps users keep track of health metrics and manage medical records efficiently.',
-      logoUrl:
-        'https://media.licdn.com/dms/image/v2/C560BAQEMm9oUFWAXew/company-logo_100_100/company-logo_100_100/0/1630577033084?e=1768435200&v=beta&t=s4Zqpz40acqpM9f0i5oui6PtfPc0-25whZSRF_sSWmQ',
+      logoUrl: '/projects-logo/pelmedic-logo.jpeg',
     },
     {
       title: 'Intabreej',
@@ -151,6 +151,8 @@ export const portfolioData: IPortfolioData = {
       videoUrl:
         'https://pub-247382da781146e3b6ec590edebded92.r2.dev/zedapp/zedapp-preview.mp4',
     },
+
+    // PERSONAL PROJECTS
     {
       title: 'Porify',
       status: 'live',
