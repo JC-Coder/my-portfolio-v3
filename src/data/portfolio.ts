@@ -164,6 +164,34 @@ export const portfolioData: IPortfolioData = {
       videoUrl:
         'https://pub-247382da781146e3b6ec590edebded92.r2.dev/portify/portify-preview.mp4',
     },
+    {
+      title: 'MyScratchpad',
+      status: 'live',
+      statusColor: 'bg-emerald-500/10 text-emerald-500',
+      description:
+        'A lightweight VS Code extension that enables fast, persistent scratch files for notes and code snippets. Supports global and workspace scopes, clipboard-aware creation, and a clean webview interface — built to streamline everyday developer workflows without clutter',
+      logoUrl: '/projects-logo/myscratchpad-logo.png',
+      demoLink:
+        'https://marketplace.visualstudio.com/items?itemName=jccoder.myscratchpad',
+    },
+    {
+      title: 'BVR (Background Video Recorder)',
+      status: 'live',
+      statusColor: 'bg-emerald-500/10 text-emerald-500',
+      description:
+        'An Android application that enables seamless background video recording with a minimal, user friendly interface. Designed for performance and reliability, BVR allows users to capture video discreetly while continuing to use their device.',
+      logoUrl: '/projects-logo/bvr-logo.png',
+      demoLink: 'https://bvr-app.jccoder.xyz/',
+    },
+    {
+      title: 'DB Mover',
+      status: 'live',
+      statusColor: 'bg-emerald-500/10 text-emerald-500',
+      description:
+        'A streamlined database migration tool that simplifies moving data between environments with minimal configuration. Designed for reliability and speed, DB Mover helps developers transfer, sync, and manage database data efficiently.',
+      logoUrl: '/projects-logo/db-mover-logo.svg',
+      demoLink: 'https://db-mover.jccoder.xyz/',
+    },
   ],
   experience: [
     {
