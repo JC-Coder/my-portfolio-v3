@@ -192,6 +192,15 @@ export const portfolioData: IPortfolioData = {
       logoUrl: '/projects-logo/db-mover-logo.svg',
       demoLink: 'https://db-mover.jccoder.xyz/',
     },
+    {
+      title: 'Group Buddy',
+      status: 'live',
+      statusColor: 'bg-emerald-500/10 text-emerald-500',
+      description:
+        'A WhatsApp group management tool designed to help admins organize, moderate, and manage group interactions more effectively. Group Buddy simplifies coordination, improves structure, and enhances the overall WhatsApp group experience.',
+      logoUrl: '/projects-logo/groupbuddy-logo.png',
+      demoLink: 'https://group-buddy.jccoder.xyz/',
+    },
   ],
   experience: [
     {
@@ -213,7 +222,7 @@ export const portfolioData: IPortfolioData = {
     {
       company: 'Truparse',
       logoUrl:
-        'https://media.licdn.com/dms/image/v2/C4E0BAQGzkpkoG6aNuA/company-logo_200_200/company-logo_200_200/0/1677794769514/truparse_logo?e=1768435200&v=beta&t=KAUWEtV6POu8H_P1fsg7ZuPd3AXAxXhsksbpdQKBUS0',
+        '/work-history-logo/truparse-logo.jpeg',
       description:
         'Worked on multiple projects - Figur (fintech), Breej (fintech), Fosad (AI Recruitment Platform), Penguine (Property booking platform) ',
       roles: [
@@ -230,7 +239,7 @@ export const portfolioData: IPortfolioData = {
     {
       company: 'Zed',
       logoUrl:
-        'https://media.licdn.com/dms/image/v2/D4D0BAQEpEjoK5aUvTQ/company-logo_100_100/company-logo_100_100/0/1684958856471/pawa_ng_logo?e=1768435200&v=beta&t=wuay6x2Mhf25LQeMegFuAOkuJkzfzyiUcqh0x0-FjmM',
+        '/work-history-logo/zedapp-logo.jpeg',
       description:
         'ReEngineered and maintained backend services for Zed, a leading fintech startup, enhancing system performance and reliability.',
       roles: [
@@ -247,7 +256,7 @@ export const portfolioData: IPortfolioData = {
     {
       company: 'Onract',
       logoUrl:
-        'https://media.licdn.com/dms/image/v2/D4E0BAQFu4Edf0Xy0yA/company-logo_100_100/company-logo_100_100/0/1688637502473?e=1768435200&v=beta&t=CFRBq7FndxTBzJW3DEic4LwAk_pWybR-xDj_N_s7xDo',
+        '/work-history-logo/onract-logo.jpeg',
       description:
         'Worked on E-commerce application with advanced integration with social media e.g Facebook where user can make purchase directly from chat through chat bots.',
       roles: [
@@ -264,7 +273,7 @@ export const portfolioData: IPortfolioData = {
     {
       company: 'Pelmedic',
       logoUrl:
-        'https://media.licdn.com/dms/image/v2/C560BAQEMm9oUFWAXew/company-logo_100_100/company-logo_100_100/0/1630577033084?e=1768435200&v=beta&t=s4Zqpz40acqpM9f0i5oui6PtfPc0-25whZSRF_sSWmQ',
+        '/work-history-logo/pelmedic-logo.jpeg',
       description:
         'Worked on a Medical application that helps users keep track of health metrics and manage medical records efficiently.',
       roles: [
@@ -281,7 +290,7 @@ export const portfolioData: IPortfolioData = {
     {
       company: 'SpiCodeX',
       logoUrl:
-        'https://media.licdn.com/dms/image/v2/D4D0BAQGVgnUtYOjVAg/company-logo_100_100/company-logo_100_100/0/1704624030101?e=1768435200&v=beta&t=83Pf2t2-s9MEio8sjTQGqlkkbfBg1cGDruCn_Ata0N8',
+        '/work-history-logo/spicodex-logo.jpeg',
       description:
         'Worked on an E-commerce application for robotic and STEM education.',
       roles: [
