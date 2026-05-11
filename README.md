@@ -2,6 +2,10 @@
 
 A modern, high-performance portfolio website built with **TanStack Start**, **React**, and **Tailwind CSS v4**. This version is optimized for speed, SEO, and aesthetics, featuring dynamic animations and a clean professional layout.
 
+## Design Preview
+
+![Portfolio design screenshot](public/design-image.png)
+
 ---
 
 ## 🛠 Tech Stack
