@@ -1,9 +1,12 @@
 import {defineCliConfig} from 'sanity/cli'
+import {getSanityConfig} from '../sanity.shared'
+
+const sanityConfig = getSanityConfig(process.env)
 
 export default defineCliConfig({
   api: {
-    projectId: 'f4c27e9l',
-    dataset: 'production'
+    projectId: sanityConfig.projectId,
+    dataset: sanityConfig.dataset,
   },
   deployment: {
     /**

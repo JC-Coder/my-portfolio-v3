@@ -16,6 +16,7 @@ A modern, high-performance portfolio website built with **TanStack Start**, **Re
 - **State & Routing**: [TanStack Router](https://tanstack.com/router)
 - **Validation**: [Zod](https://zod.dev/)
 - **Analytics**: [PostHog](https://posthog.com/) & [Google Analytics](https://analytics.google.com/)
+- **CMS**: [Sanity](https://www.sanity.io/)
 - **Deployment**: [Netlify](https://www.netlify.com/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 
@@ -53,19 +54,118 @@ A modern, high-performance portfolio website built with **TanStack Start**, **Re
 
 ## ✍️ How to Edit Content
 
-Most of the content is configuration-driven, meaning you don't need to touch the UI components to update your information.
+The site supports two content sources:
 
-### 1. Main Portfolio Data
+- **Sanity CMS** for profile, social links, projects, experience, education, blog posts, and speaking engagements.
+- **Hardcoded data** in `src/data/portfolio.ts` as a fallback and for tools.
 
-All personal info, projects, experience, education, and tools are located in:
-👉 `src/data/portfolio.ts`
+The frontend tries Sanity first. If Sanity is empty or unavailable, it falls back to `src/data/portfolio.ts`.
 
-To update your info:
+### Sanity Content
 
-- Open the file and modify the `portfolioData` object.
-- **Projects**: Add or edit objects in the `projects` array.
-- **Experience**: Update your roles in the `experience` array.
-- **Tools**: Add your tech stack icons and categories in the `tools` array.
+Sanity Studio lives in:
+
+```text
+studio/
+```
+
+Schemas live in:
+
+```text
+studio/schemaTypes/
+```
+
+Frontend queries live in:
+
+```text
+src/data/sanityPortfolio.ts
+```
+
+Sanity client config lives in:
+
+```text
+src/lib/sanity.ts
+```
+
+Shared Sanity project defaults live in:
+
+```text
+sanity.shared.ts
+```
+
+To run Studio locally:
+
+```bash
+cd studio
+npm run dev
+```
+
+To deploy Studio to Sanity:
+
+```bash
+cd studio
+npm run deploy
+```
+
+After deployment, edit and publish content from your `*.sanity.studio` URL.
+
+### Hardcoded Content
+
+The fallback portfolio data lives in:
+
+```text
+src/data/portfolio.ts
+```
+
+Use this file when:
+
+- You want local fallback content.
+- You want to update tools, because tools intentionally live in code.
+- You want to seed Sanity from existing hardcoded data.
+
+Tools are rendered from:
+
+```text
+portfolioData.tools
+```
+
+There is no Sanity schema for tools.
+
+### Seeding Sanity From Hardcoded Data
+
+If you already have content in `src/data/portfolio.ts`, seed it into Sanity with:
+
+```bash
+SANITY_WRITE_TOKEN=your_write_token npm run sanity:seed
+```
+
+The seed script lives in:
+
+```text
+scripts/seed-sanity.ts
+```
+
+It seeds:
+
+- profile
+- social links
+- projects
+- experience
+- education
+- blog posts
+- speaking engagements
+
+It does not seed tools.
+
+The script uses stable document IDs and `createOrReplace`, so running it again updates the same seeded documents instead of creating duplicates.
+
+Create a write token in Sanity Manage:
+
+```text
+Project Settings → API → Tokens
+```
+
+Do not commit write tokens or expose them with a `VITE_` prefix.
 
 ### 2. SEO & Metadata
 
@@ -94,7 +194,20 @@ To enable analytics and other services, create a `.env.local` file in the root d
 VITE_PUBLIC_POSTHOG_KEY=your_posthog_key
 VITE_PUBLIC_POSTHOG_HOST=https://app.posthog.com
 VITE_PUBLIC_GA_ID=your_google_analytics_id
+VITE_SANITY_PROJECT_ID=f4c27e9l
+VITE_SANITY_DATASET=production
+VITE_SANITY_API_VERSION=2026-03-01
 ```
+
+`VITE_SANITY_PROJECT_ID`, `VITE_SANITY_DATASET`, and `VITE_SANITY_API_VERSION` are safe to expose because they are used for public reads.
+
+Never expose this in frontend code:
+
+```env
+SANITY_WRITE_TOKEN=your_write_token
+```
+
+Only pass `SANITY_WRITE_TOKEN` when running local scripts.
 
 ---
 
@@ -111,8 +224,9 @@ This project is integrated with two powerful analytics tools:
 
 - `src/routes/`: TanStack Router file-based routing.
 - `src/components/`: Reusable UI components (Shadcn + Custom).
-- `src/data/`: Static data and content configurations.
+- `src/data/`: Static fallback data and Sanity query helpers.
 - `src/lib/`: Utility functions and SEO configurations.
+- `studio/`: Sanity Studio and content schemas.
 - `public/`: Static assets (images, redirects, robots.txt, sitemap).
 
 ---

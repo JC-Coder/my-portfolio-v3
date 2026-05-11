@@ -1,8 +1,8 @@
 import { createClient } from '@sanity/client'
 import { portfolioData } from '../src/data/portfolio'
+import { getSanityConfig } from '../sanity.shared'
 
-const projectId = process.env.VITE_SANITY_PROJECT_ID || 'f4c27e9l'
-const dataset = process.env.VITE_SANITY_DATASET || 'production'
+const sanityConfig = getSanityConfig(process.env)
 const token = process.env.SANITY_WRITE_TOKEN
 
 if (!token) {
@@ -12,9 +12,7 @@ if (!token) {
 }
 
 const client = createClient({
-  projectId,
-  dataset,
-  apiVersion: '2026-03-01',
+  ...sanityConfig,
   token,
   useCdn: false,
 })
@@ -27,6 +25,17 @@ const slugify = (value: string) =>
 
 async function seed() {
   const documents = [
+    {
+      _id: 'profile-main',
+      _type: 'profile',
+      ...portfolioData.overview,
+    },
+    ...portfolioData.socials.map((social, index) => ({
+      _id: `social-${slugify(social.name)}`,
+      _type: 'social',
+      ...social,
+      order: index,
+    })),
     ...portfolioData.projects.map((project, index) => ({
       _id: `project-${slugify(project.title)}`,
       _type: 'project',

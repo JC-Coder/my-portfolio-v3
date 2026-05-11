@@ -45,6 +45,7 @@ export function Speaking() {
 
 function SpeakingItem({ engagement }: { engagement: SpeakingEngagement }) {
   const { trackTalkClick } = usePostHogEvents()
+  const { readUrl, slidesUrl, videoUrl } = engagement
 
   return (
     <div className="flex flex-col md:flex-row rounded-2xl border border-border bg-background overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
@@ -73,15 +74,13 @@ function SpeakingItem({ engagement }: { engagement: SpeakingEngagement }) {
         </p>
 
         <div className="flex flex-wrap gap-x-6 gap-y-3 pt-1">
-          {engagement.videoUrl && (
+          {videoUrl && (
             <a
-              href={engagement.videoUrl}
+              href={videoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 hover:scale-105 active:scale-95"
-              onClick={() =>
-                trackTalkClick(engagement.title, engagement.videoUrl)
-              }
+              onClick={() => trackTalkClick(engagement.title, videoUrl)}
             >
               <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                 <Play className="w-3.5 h-3.5 fill-current" />
@@ -90,15 +89,13 @@ function SpeakingItem({ engagement }: { engagement: SpeakingEngagement }) {
             </a>
           )}
 
-          {engagement.slidesUrl && (
+          {slidesUrl && (
             <a
-              href={engagement.slidesUrl}
+              href={slidesUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 hover:scale-105 active:scale-95"
-              onClick={() =>
-                trackTalkClick(engagement.title, engagement.slidesUrl)
-              }
+              onClick={() => trackTalkClick(engagement.title, slidesUrl)}
             >
               <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                 <Monitor className="w-3.5 h-3.5" />
@@ -107,15 +104,13 @@ function SpeakingItem({ engagement }: { engagement: SpeakingEngagement }) {
             </a>
           )}
 
-          {engagement.readUrl && (
+          {readUrl && (
             <a
-              href={engagement.readUrl}
+              href={readUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-all duration-200 hover:scale-105 active:scale-95"
-              onClick={() =>
-                trackTalkClick(engagement.title, engagement.readUrl)
-              }
+              onClick={() => trackTalkClick(engagement.title, readUrl)}
             >
               <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                 <FileText className="w-3.5 h-3.5" />

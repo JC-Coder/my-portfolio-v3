@@ -1,8 +1,9 @@
 import {createClient} from '@sanity/client'
+import {getSanityConfig} from '../../sanity.shared'
+
+const sanityConfig = getSanityConfig(import.meta.env)
 
 export const sanityClient = createClient({
-  projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'f4c27e9l',
-  dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
-  apiVersion: '2026-03-01',
+  ...sanityConfig,
   useCdn: true,
 })
