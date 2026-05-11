@@ -1,10 +1,25 @@
 import { ChevronDown, ExternalLink } from 'lucide-react'
-import { useState } from 'react'
-import { portfolioData } from '../../data/portfolio'
+import { useEffect, useState } from 'react'
+import { portfolioData, type IProject } from '../../data/portfolio'
+import { getProjects } from '../../data/sanityPortfolio'
 import { usePostHogEvents } from '../../hooks/usePostHog'
 
 export function Projects() {
-  const { projects } = portfolioData
+  const [projects, setProjects] = useState<Array<IProject>>(
+    portfolioData.projects,
+  )
+
+  useEffect(() => {
+    getProjects()
+      .then((sanityProjects) => {
+        if (sanityProjects.length > 0) {
+          setProjects(sanityProjects)
+        }
+      })
+      .catch(() => {
+        setProjects(portfolioData.projects)
+      })
+  }, [])
 
   return (
     <div className="space-y-12">
@@ -30,7 +45,7 @@ function ProjectCard({
   demoLink,
   logoUrl,
   videoUrl,
-}: any) {
+}: IProject) {
   const [showVideo, setShowVideo] = useState(false)
   const {
     project: { trackDemoUrlClick, trackVideoClick },

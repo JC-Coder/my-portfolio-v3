@@ -9,14 +9,36 @@ import {
   Youtube,
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { getGithubLink, portfolioData } from '../data/portfolio'
+import { portfolioData } from '../data/portfolio'
+import { getProfileContent } from '../data/sanityPortfolio'
 import { usePostHogEvents } from '../hooks/usePostHog'
+import type {ProfileContent} from '../data/sanityPortfolio';
 
 export function ProfileHeader() {
   const [isDark, setIsDark] = useState(true)
-  const { overview, socials } = portfolioData
+  const [content, setContent] = useState<ProfileContent>({
+    overview: portfolioData.overview,
+    socials: portfolioData.socials,
+  })
+  const { overview, socials } = content
+  const githubLink = socials.find((social) => social.icon === 'github')?.link
 
   const { trackSocialLinkClick } = usePostHogEvents()
+
+  useEffect(() => {
+    getProfileContent()
+      .then((profileContent) => {
+        if (profileContent) {
+          setContent(profileContent)
+        }
+      })
+      .catch(() => {
+        setContent({
+          overview: portfolioData.overview,
+          socials: portfolioData.socials,
+        })
+      })
+  }, [])
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -61,22 +83,24 @@ export function ProfileHeader() {
 
         <div className="flex items-center gap-4">
           {/* Github Link */}
-          <a
-            href={getGithubLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="GitHub Profile"
-            onClick={() => {
-              trackSocialLinkClick('github', getGithubLink()!)
-            }}
-          >
-            <Github className="w-5 h-5" />
-            <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[11px] font-medium rounded opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap shadow-xl z-50 scale-95 group-hover:scale-100">
-              GitHub
-              <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100"></span>
-            </span>
-          </a>
+          {githubLink && (
+            <a
+              href={githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="GitHub Profile"
+              onClick={() => {
+                trackSocialLinkClick('github', githubLink)
+              }}
+            >
+              <Github className="w-5 h-5" />
+              <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[11px] font-medium rounded opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap shadow-xl z-50 scale-95 group-hover:scale-100">
+                GitHub
+                <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100"></span>
+              </span>
+            </a>
+          )}
 
           {/* Theme Toggle */}
           <button
