@@ -1,8 +1,24 @@
+import { useEffect, useState } from 'react'
 import { portfolioData } from '../../data/portfolio'
+import { getBlogPosts, type BlogPost } from '../../data/sanityPortfolio'
 import { usePostHogEvents } from '../../hooks/usePostHog'
 
 export function Blog() {
-  const { blogPosts } = portfolioData
+  const [blogPosts, setBlogPosts] = useState<Array<BlogPost>>(
+    portfolioData.blogPosts,
+  )
+
+  useEffect(() => {
+    getBlogPosts()
+      .then((sanityBlogPosts) => {
+        if (sanityBlogPosts.length > 0) {
+          setBlogPosts(sanityBlogPosts)
+        }
+      })
+      .catch(() => {
+        setBlogPosts(portfolioData.blogPosts)
+      })
+  }, [])
 
   return (
     <div className="space-y-12">
@@ -22,7 +38,7 @@ export function Blog() {
   )
 }
 
-function BlogItem({ post }: { post: any }) {
+function BlogItem({ post }: { post: BlogPost }) {
   const { trackBlogPostClick } = usePostHogEvents()
 
   return (

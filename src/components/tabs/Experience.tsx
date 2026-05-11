@@ -1,12 +1,44 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { calculateDuration, formatDate } from '../../lib/utils'
 import { portfolioData } from '../../data/portfolio'
 import type { IEducation, IExperience, IRole } from '../../data/portfolio'
+import { getExperienceContent } from '../../data/sanityPortfolio'
 import { usePostHogEvents } from '../../hooks/usePostHog'
 
 export function Experience() {
-  const { experience, education } = portfolioData
+  const [content, setContent] = useState({
+    experience: portfolioData.experience,
+    education: portfolioData.education,
+  })
+  const { experience, education } = content
+
+  useEffect(() => {
+    getExperienceContent()
+      .then((sanityContent) => {
+        if (
+          sanityContent.experience.length > 0 ||
+          sanityContent.education.length > 0
+        ) {
+          setContent({
+            experience:
+              sanityContent.experience.length > 0
+                ? sanityContent.experience
+                : portfolioData.experience,
+            education:
+              sanityContent.education.length > 0
+                ? sanityContent.education
+                : portfolioData.education,
+          })
+        }
+      })
+      .catch(() => {
+        setContent({
+          experience: portfolioData.experience,
+          education: portfolioData.education,
+        })
+      })
+  }, [])
 
   return (
     <div className="space-y-12">
@@ -152,7 +184,7 @@ function ExperienceItem({
         </div>
 
         <div className="space-y-8 relative">
-          {roles.map((role: any, index: number) => (
+          {roles.map((role, index) => (
             <div
               key={index}
               className={`relative ${roles.length > 1 ? 'pl-6' : ''}`}

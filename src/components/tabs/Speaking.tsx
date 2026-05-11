@@ -1,9 +1,28 @@
+import { useEffect, useState } from 'react'
 import { FileText, Monitor, Play } from 'lucide-react'
 import { portfolioData } from '../../data/portfolio'
+import {
+  getSpeakingEngagements,
+  type SpeakingEngagement,
+} from '../../data/sanityPortfolio'
 import { usePostHogEvents } from '../../hooks/usePostHog'
 
 export function Speaking() {
-  const { speakingEngagements } = portfolioData
+  const [speakingEngagements, setSpeakingEngagements] = useState<
+    Array<SpeakingEngagement>
+  >(portfolioData.speakingEngagements)
+
+  useEffect(() => {
+    getSpeakingEngagements()
+      .then((sanitySpeakingEngagements) => {
+        if (sanitySpeakingEngagements.length > 0) {
+          setSpeakingEngagements(sanitySpeakingEngagements)
+        }
+      })
+      .catch(() => {
+        setSpeakingEngagements(portfolioData.speakingEngagements)
+      })
+  }, [])
 
   return (
     <div className="space-y-12">
@@ -24,7 +43,7 @@ export function Speaking() {
   )
 }
 
-function SpeakingItem({ engagement }: { engagement: any }) {
+function SpeakingItem({ engagement }: { engagement: SpeakingEngagement }) {
   const { trackTalkClick } = usePostHogEvents()
 
   return (
